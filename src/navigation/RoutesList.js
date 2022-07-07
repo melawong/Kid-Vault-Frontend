@@ -3,11 +3,11 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../userContext";
 import Home from "../common/Home";
-import AddKidForm from "../common/AddKidForm";
+import AddKidForm from "../forms/AddKidForm";
 import MyKids from "../common/MyKids";
 import UserProfile from "../common/UserProfile";
-import LoginForm from "../common/LoginForm";
-import SignupForm from "../common/SignupForm";
+import LoginForm from "../forms/LoginForm";
+import SignupForm from "../forms/SignupForm";
 
 /** Routes list defines routes for components */
 
