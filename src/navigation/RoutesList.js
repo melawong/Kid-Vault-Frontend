@@ -4,7 +4,7 @@ import { useContext } from "react";
 import UserContext from "../userContext";
 import Home from "../common/Home";
 import AddKidForm from "../forms/AddKidForm";
-import MyKids from "../common/MyKids";
+import KidsList from "../common/KidsList";
 import UserProfile from "../common/UserProfile";
 import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
@@ -17,7 +17,7 @@ function RoutesList() {
   function renderRoutes() {
     return user ? (
       <>
-        <Route path="/mykids" element={<MyKids />} />
+        <Route path="/mykids" element={<KidsList />} />
         <Route path="/addkid" element={<AddKidForm />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/logout" element={<Navigate to="/" />} />

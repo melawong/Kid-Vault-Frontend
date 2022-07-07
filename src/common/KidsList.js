@@ -1,6 +1,8 @@
 import MomApi from "../helpers/momApi";
+import KidCard from "./KidCard";
 import { useEffect, useState } from "react";
-function MyKids() {
+
+function KidsList() {
   const [kids, setKids] = useState([]);
 
   useEffect(function getKidsOnMount() {
@@ -10,15 +12,13 @@ function MyKids() {
       setKids(kidList);
     }
     getKids();
-  }, [kids]);
+  }, []);
 
 
   return (<div>
-    <ul>
-      {kids.map(kid => <li key={kid.id}> {`${kid.first_name} ${kid.last_name}`}</li>)}
-    </ul>
+    {kids.map(kid => <KidCard key={kid.id} kid={kid} />)}
   </div>);
 
 }
 
-export default MyKids;
+export default KidsList;
