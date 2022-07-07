@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
+import MomApi from "./helpers/momApi";
 import Navbar from "./navigation/Navbar";
 import RoutesList from "./navigation/RoutesList";
 import UserContext from "./userContext";
@@ -78,15 +79,15 @@ function App() {
   //   return updatedUserInfo;
   // }
 
-  // async function handleApplication(username, jobId) {
-  //   const newJobId = await JoblyApi.apply(username, jobId);
+  async function handleAddKid(kid) {
+    const newKid = await MomApi.addKid(kid);
 
-  //   setUser((user) => ({
-  //     ...user,
-  //     applications: new Set([...user.applications, newJobId]),
-  //   }));
-  //   return newJobId;
-  // }
+    setUser((user) => ({
+      ...user,
+      kids: new Set([...user.kids, newKid]),
+    }));
+    return newKid;
+  }
 
   return loaded ? (
     <div className="App">
@@ -99,7 +100,7 @@ function App() {
             // handleSignup,
             // logout,
             // handleUserUpdate,
-            // handleApplication,
+            handleAddKid,
           }}
         >
           <Navbar />

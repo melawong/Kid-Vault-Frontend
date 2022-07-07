@@ -17,7 +17,7 @@ class MomApi {
   static async request(data = {}, method = "POST") {
 
     const url = `${BASE_URL}`;
-    const headers = { 'Content-Type': 'application/json', 'Authorization': this.key };
+    const headers = { 'Content-Type': 'application/json', 'Authorization': "apikey " + this.key };
 
     try {
       let response = await axios({ data, url, method, headers }).then(result => result.data.data);
@@ -74,11 +74,11 @@ class MomApi {
   //     return res.user;
   //   }
 
-  //   /** Apply user to job, returns confirmation {"applied": jobId} */
-  //   static async apply(username, jobId) {
-  //     let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
-  //     return res.applied;
-  //   }
+  /** Add a kid to database, returns confirmation { "added": {kid} } */
+  static async addKid(kid) {
+    let res = await this.request({ mutation: '{addKidMutation {first_name last_name birth_date}}' });
+    return res.addKid;
+  }
 }
 
 export default MomApi;
