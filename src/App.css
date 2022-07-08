@@ -52,3 +52,12 @@
   align-items: center;
   background-position: center;
 }
+
+.homepage-title {
+  text-shadow: 3px 3px 3px #0c0b0a;
+}
+
+.homepage-text {
+  text-shadow: 2px 2px 2px #0c0b0a;
+}
+
