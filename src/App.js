@@ -52,13 +52,13 @@ function App() {
   //   localStorage.setItem(TOKEN_NAME, userToken);
   // }
 
-  // /** Make API call to sign up user */
+  /** Make API call to sign up user */
 
-  // async function handleSignup(formData) {
-  //   const newUserToken = await JoblyApi.signUp(formData);
-  //   setToken(newUserToken);
-  //   localStorage.setItem(TOKEN_NAME, newUserToken);
-  // }
+  async function handleSignup(formData) {
+    const newUserToken = await MomApi.signUp(formData);
+    setToken(newUserToken);
+    localStorage.setItem(TOKEN_NAME, newUserToken);
+  }
 
   /** Log user out, reset states and local storage */
   function logout() {
@@ -97,7 +97,7 @@ function App() {
             user,
             // token,
             // handleLogin,
-            // handleSignup,
+            handleSignup,
             logout,
             handleUserUpdate,
             handleAddKid,

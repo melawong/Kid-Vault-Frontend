@@ -12,9 +12,9 @@ import FlashMessage from "../common/FlashMessage";
 function AddKidForm() {
 
   const { user, handleAddKid } = useContext(UserContext);
-  const initialState = { firstName: "", lastName: "", dob: "" };
+  const initialState = { firstName: "", lastName: "", birth_date: "", classroom: "" };
   const [formData, setFormData] = useState(initialState);
-  const [hasUpdated, setHasUpdated] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -25,19 +25,9 @@ function AddKidForm() {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const { firstName, lastName, dob } = formData;
-    const updatedData = await handleAddKid({
-      firstName,
-      lastName,
-      dob,
-    });
-    setFormData((formData) => ({
-      ...formData,
-      firstName: updatedData.firstName,
-      lastName: updatedData.lastName,
-      dob: updatedData.dob,
-    }));
-    setHasUpdated(true);
+    await handleAddKid(formData);
+    setFormData(initialState);
+    setHasSubmitted(true);
   }
 
   /** Create form fields  */
@@ -60,7 +50,7 @@ function AddKidForm() {
   }
 
   function renderFlashMessage() {
-    return hasUpdated ? (
+    return hasSubmitted ? (
       <FlashMessage message="Updated successfully!" alertStatus="success" />
     ) : (
       ""
