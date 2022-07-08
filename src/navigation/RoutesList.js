@@ -8,6 +8,7 @@ import KidsList from "../common/KidsList";
 import UserProfile from "../common/UserProfile";
 import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
+import KidDetail from "../common/KidDetail";
 
 /** Routes list defines routes for components */
 
@@ -18,6 +19,7 @@ function RoutesList() {
     return user ? (
       <>
         <Route path="/mykids" element={<KidsList />} />
+        <Route path="/mykids/:id" element={<KidDetail />} />
         <Route path="/addkid" element={<AddKidForm />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/logout" element={<Navigate to="/" />} />

@@ -37,17 +37,21 @@ class MomApi {
     let response = await this.request({ query: '{myQuery {first_name last_name id}}' });
     return response.myQuery;
   }
+
+
   //   /** Get list of all companies matching search request */
   //   static async getCompanies(searchRequest = {}) {
   //     let res = await this.request("companies", searchRequest);
   //     return res.companies;
   //   }
 
-  //   /** Get list of all jobs matching search request */
-  //   static async getJob(jobId) {
-  //     let res = await this.request(`jobs/${jobId}`);
-  //     return res.job;
-  //   }
+  /** Get details on single kid  */
+  static async getKid(id) {
+    let response = await this.request({
+      query: `{studentQuery(studentId: ${id})
+      {first_name last_name classroom birth_date}}` });
+    return response.studentQuery[0];
+  }
 
   //   /** Sign up a user, returns token */
   //   static async signUp(formData) {

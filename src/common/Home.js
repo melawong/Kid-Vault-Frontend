@@ -19,12 +19,12 @@ function Home() {
           </h4>
         ) : (
           <>
-            <button className="btn btn-primary mx-1">
+            <button className="btn btn-secondary mx-1">
               <Link to={`/login`} style={{ textDecoration: "none" }}>
                 Login
               </Link>
             </button>
-            <button className="btn btn-primary mx-1">
+            <button className="btn btn-secondary mx-1">
               <Link to={`/signup`} style={{ textDecoration: "none" }}>
                 Signup
               </Link>

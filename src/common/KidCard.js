@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-/** Displays company information as link to company detail
+/** Displays preview of kid as link to kid detail
  *
- * props - company
+ * props - kid
  * state - none
  *
- * CompaniesList --> { CompanyCard } --> CompanyDetail
+ * KidsList --> { KidCard } --> KidDetail
  */
 
 function KidCard({ kid }) {
@@ -15,7 +15,7 @@ function KidCard({ kid }) {
 
   return (
     <Link
-      to={`/`}
+      to={`/mykids/${kid.id}`}
       style={{ textDecoration: "none", maxWidth: "50rem" }}
       className="card border-light mb-3 mx-auto d-flex"
     >
