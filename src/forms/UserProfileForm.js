@@ -81,7 +81,7 @@ function UserProfileForm() {
       <div className="mb-3 col-md-9 mx-auto mt-2">
         {renderFormFields()}
         {renderFlashMessage()}
-        <button className="btn btn-info">Save Changes!</button>
+        <button className="btn btn-info">Save</button>
       </div>
     </form>
   );
