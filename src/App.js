@@ -60,24 +60,24 @@ function App() {
   //   localStorage.setItem(TOKEN_NAME, newUserToken);
   // }
 
-  // /** Log user out, reset states and local storage */
-  // function logout() {
-  //   localStorage.removeItem(TOKEN_NAME);
-  //   setToken("");
-  //   JoblyApi.token = "";
-  //   setUser(null);
-  // }
+  /** Log user out, reset states and local storage */
+  function logout() {
+    localStorage.removeItem(TOKEN_NAME);
+    setToken("");
+    MomApi.token = "";
+    setUser(null);
+  }
 
-  // async function handleUserUpdate(username, formData) {
-  //   const updatedUserInfo = await JoblyApi.updateUser(username, formData);
+  async function handleUserUpdate(username, formData) {
+    const updatedUserInfo = await MomApi.updateUser(username, formData);
 
-  //   setUser((user) => ({
-  //     ...user,
-  //     ...updatedUserInfo,
-  //   }));
+    setUser((user) => ({
+      ...user,
+      ...updatedUserInfo,
+    }));
 
-  //   return updatedUserInfo;
-  // }
+    return updatedUserInfo;
+  }
 
   async function handleAddKid(kid) {
     const newKid = await MomApi.addKid(kid);
@@ -98,8 +98,8 @@ function App() {
             // token,
             // handleLogin,
             // handleSignup,
-            // logout,
-            // handleUserUpdate,
+            logout,
+            handleUserUpdate,
             handleAddKid,
           }}
         >

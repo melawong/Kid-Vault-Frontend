@@ -15,6 +15,7 @@ function SignupForm() {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
   };
   const { handleSignup } = useContext(UserContext);
   const [formData, setFormData] = useState(initialState);

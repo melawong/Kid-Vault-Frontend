@@ -1,5 +1,10 @@
+import UserProfileForm from "../forms/UserProfileForm";
+
 function UserProfile() {
-  return <p> User Profile </p>;
+  return (
+    <div className="row container-flex">
+      <UserProfileForm />
+    </div>);
 }
 
 export default UserProfile;

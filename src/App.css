@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.homepage {
+  height: 100vh;
+  color: #fff;
+  background-image: linear-gradient(
+      rgba(69, 67, 67, 0.5),
+      rgba(67, 67, 67, 0.5)
+    ),
+    url("../public/homepage-groupkids.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+}

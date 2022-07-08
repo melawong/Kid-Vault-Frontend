@@ -11,7 +11,7 @@ import FlashMessage from "../common/FlashMessage";
 
 function UserProfileForm() {
   const { user, handleUserUpdate } = useContext(UserContext);
-  const { username, firstName, lastName, email } = user;
+  const { username, firstName, lastName, email, phone } = user;
   const [hasUpdated, setHasUpdated] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -19,6 +19,7 @@ function UserProfileForm() {
     firstName,
     lastName,
     email,
+    phone
   });
 
   /** Update form input. */
@@ -35,12 +36,14 @@ function UserProfileForm() {
       firstName,
       lastName,
       email,
+      phone
     });
     setFormData((formData) => ({
       ...formData,
       firstName: updatedData.firstName,
       lastName: updatedData.lastName,
       email: updatedData.email,
+      phone: updatedData.phone
     }));
     setHasUpdated(true);
   }
