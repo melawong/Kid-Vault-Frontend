@@ -9,18 +9,20 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
  */
 
 class MomApi {
-  // Remember, the backend needs to be authorized with a token
-  // We're providing a token you can use to interact with the backend API
-  // DON'T MODIFY THIS TOKEN
+
   static key = process.env.REACT_APP_API_KEY;
+  static token = "";
 
   static async request(data = {}, method = "POST") {
 
     const url = `${BASE_URL}`;
-    const headers = { 'Content-Type': 'application/json', 'Authorization': "apikey " + this.key };
+    const headers = {
+      'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
+    };
 
     try {
-      let response = await axios({ data, url, method, headers }).then(result => result.data.data);
+      let response = await axios({ data, url, method, headers })
+        .then(result => result.data.data);
       return response;
     } catch (err) {
       console.error("API Error:", err.response);
@@ -34,10 +36,11 @@ class MomApi {
   /** Get details on a company by handle. */
 
   static async getMyKids() {
-    let response = await this.request({ query: '{myQuery {first_name last_name id}}' });
-    return response.myQuery;
+    let response = await this.request({
+      query: '{allStudentsQuery {first_name last_name id}}'
+    });
+    return response.allStudentsQuery;
   }
-
 
   //   /** Get list of all companies matching search request */
   //   static async getCompanies(searchRequest = {}) {
@@ -53,12 +56,12 @@ class MomApi {
     return response.studentQuery[0];
   }
 
-  //   /** Sign up a user, returns token */
-  //   static async signUp(formData) {
-  //     let res = await this.request("auth/register", formData, "post");
-  //     console.log("token", res.token);
-  //     return res.token;
-  //   }
+  // /** Sign up a user, returns token */
+  // static async signUp(formData) {
+  //   let response = await this.request({ ...formData, is_guardian: true });
+  //   console.log("token", response.token);
+  //   return response.token;
+  // }
 
   //   /** Log in a user, return token */
   //   static async login(formData) {
@@ -80,8 +83,26 @@ class MomApi {
 
   /** Add a kid to database, returns confirmation { "added": {kid} } */
   static async addKid(kid) {
-    let res = await this.request({ mutation: '{addKidMutation {first_name last_name birth_date}}' });
-    return res.addKid;
+    const { first_name, last_name, birth_date, classroom } = kid;
+    console.log("kid", kid);
+    let response = await this.request({
+      query: `mutation{addStudentMutation(
+        first_name: "${first_name}"
+        last_name: "${last_name}"
+        birth_date: "${birth_date}"
+        classroom: "${classroom}"
+        ){
+          id
+          first_name
+          last_name
+          birth_date
+          classroom
+        }
+      }`
+    });
+
+    console.log("response.addkid", response);
+    return response.addKid;
   }
 }
 
