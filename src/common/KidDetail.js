@@ -24,15 +24,16 @@ function KidDetail() {
   /** API call to retrieve single kid on initial render */
   useEffect(function getKidOnMount() {
     async function getKid() {
-      const c = await MomApi.getKid(params.id);
-      setKid({ ...c });
+      const kid = await MomApi.getKid(params.id);
+      setKid({ ...kid });
     }
     getKid();
   }, [params.id]);
 
+
   /** Displays company details and JobsCardList of associated jobs */
   function renderKidDetails() {
-    if (Object.keys(kid).length === 0) {
+    if (!kid.first_name) {
       return <i>Loading...</i>;
     } else {
       return (
@@ -41,6 +42,8 @@ function KidDetail() {
           <h1 className="mt-3 display-5">{kid.fullName}</h1>
           <h5 className="mb-3 fw-light">{kid.classroom}</h5>
           <p className="mb-3 fw-light">{kid.birth_date}</p>
+          <p className="mb-3 fw-light">{kid.contacts[0].name}</p>
+          <p className="mb-3 fw-light">{kid.medical_record.student_height} </p>
         </>
       );
     }
