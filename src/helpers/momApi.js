@@ -26,6 +26,7 @@ class MomApi {
       return response;
     } catch (err) {
       console.error("API Error:", err.response);
+      console.log("err", err);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -33,7 +34,7 @@ class MomApi {
 
   // Individual API routes
 
-  /** Get details on a company by handle. */
+  /** Get list of all user's kids. */
 
   static async getMyKids() {
     let response = await this.request({
@@ -42,13 +43,8 @@ class MomApi {
     return response.getAllStudents;
   }
 
-  //   /** Get list of all companies matching search request */
-  //   static async getCompanies(searchRequest = {}) {
-  //     let res = await this.request("companies", searchRequest);
-  //     return res.companies;
-  //   }
+  /** Returns details on kid by id */
 
-  /** Get details on single kid  */
   static async getKid(id) {
     let response = await this.request({
       query: `{getStudentById(student_id: ${id})
@@ -74,12 +70,33 @@ class MomApi {
     return response.getStudentById;
   }
 
-  // /** Sign up a user, returns token */
-  // static async signUp(formData) {
-  //   let response = await this.request({ ...formData, is_guardian: true });
-  //   console.log("token", response.token);
-  //   return response.token;
-  // }
+  /** Sign up a user, returns token */
+  static async signUp(formData) {
+    const { first_name, last_name, username, password, email, phone } = formData;
+
+    const body = {
+      query: `mutation {
+      addUser(
+        first_name: "${first_name}",
+        last_name: "${last_name}",
+        username: "${username}",
+        password: "${password}",
+        email: "${email}",
+        phone: "${phone}")
+    }`
+    };
+
+    let response = await axios({
+      url: BASE_URL,
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
+      },
+      data: body
+    }).then(res => console.log("RES", res));
+
+    return response;
+  }
 
   //   /** Log in a user, return token */
   //   static async login(formData) {
@@ -102,25 +119,13 @@ class MomApi {
   /** Add a kid to database, returns confirmation { "added": {kid} } */
   static async addKid(kid) {
     const { first_name, last_name, birth_date, classroom } = kid;
-    console.log("kid", kid);
-    let response = await axios.post("https://test-mom-api.herokuapp.com", {
-      // query: `mutation {
-      //   addStudent(
-      first_name,
-      last_name,
-      birth_date,
-      classroom
-      //   )
-      // }`
+    let response = await this.request({
+      query: `mutation {
+        addStudent(first_name:${first_name}, last_name:${last_name}, birth_date:${birth_date}, classroom:${classroom})
+      }`
     }
-      // ,
-      // {
-      //   headers: {
-      //     'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
-      //   }
-      // }
-    ).then(res => console.log("res", res)).catch(err => console.log("err", err));
-
+    );
+    console.log("response", response);
     return response.addKid;
   }
 }

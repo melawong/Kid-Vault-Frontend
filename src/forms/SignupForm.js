@@ -12,8 +12,8 @@ function SignupForm() {
   const initialState = {
     username: "",
     password: "",
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
   };
