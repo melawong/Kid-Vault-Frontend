@@ -17,20 +17,10 @@ function KidCard({ kid }) {
     <Link
       to={`/mykids/${kid.id}`}
       style={{ textDecoration: "none", maxWidth: "50rem" }}
-      className="card border-light mb-3 mx-auto d-flex"
+      className="card text-white bg-secondary mb-3 mx-auto d-flex"
     >
       <div className="card-body">
         <h4 className="card-title">
-          {kid.imgUrl ? (
-            <img
-              src={kid.imgUrl}
-              alt={kid.fullName}
-              style={{ height: "20px" }}
-            />
-          ) : (
-            ""
-          )}
-          {"           "}
           {kid.fullName}
         </h4>
 

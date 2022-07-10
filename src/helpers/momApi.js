@@ -37,9 +37,9 @@ class MomApi {
 
   static async getMyKids() {
     let response = await this.request({
-      query: '{allStudentsQuery {first_name last_name id}}'
+      query: '{getAllStudents {first_name last_name id}}'
     });
-    return response.allStudentsQuery;
+    return response.getAllStudents;
   }
 
   //   /** Get list of all companies matching search request */
@@ -51,9 +51,9 @@ class MomApi {
   /** Get details on single kid  */
   static async getKid(id) {
     let response = await this.request({
-      query: `{studentQuery(studentId: ${id})
+      query: `{getStudentById(student_id: ${id})
       {first_name last_name classroom birth_date}}` });
-    return response.studentQuery[0];
+    return response.getStudentById;
   }
 
   // /** Sign up a user, returns token */
@@ -85,23 +85,21 @@ class MomApi {
   static async addKid(kid) {
     const { first_name, last_name, birth_date, classroom } = kid;
     console.log("kid", kid);
-    let response = await this.request({
-      query: `mutation{addStudentMutation(
-        first_name: "${first_name}"
-        last_name: "${last_name}"
-        birth_date: "${birth_date}"
-        classroom: "${classroom}"
-        ){
-          id
-          first_name
-          last_name
-          birth_date
-          classroom
-        }
+    let response = await axios.post(BASE_URL, {
+      query: `mutation {
+        addStudent(
+          first_name: "${first_name}",
+          last_name: "${last_name}",
+          birth_date: "${birth_date}",
+          classroom: "${classroom}"
+        )
       }`
-    });
+    }, {
+      headers: {
+        'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
+      }
+    }).then(res => console.log("res", res)).catch(err => console.log("err", err));
 
-    console.log("response.addkid", response);
     return response.addKid;
   }
 }
