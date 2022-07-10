@@ -93,11 +93,9 @@ class MomApi {
         'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
       },
       data: body
-    });
+    }).then(res => res);
 
-    const { jwt_token } = await response.json();
-    console.log("token", jwt_token);
-    return jwt_token;
+    return response;
   }
 
   //   /** Log in a user, return token */
