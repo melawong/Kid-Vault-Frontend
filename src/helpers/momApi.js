@@ -52,7 +52,25 @@ class MomApi {
   static async getKid(id) {
     let response = await this.request({
       query: `{getStudentById(student_id: ${id})
-      {first_name last_name classroom birth_date}}` });
+      {
+        first_name
+        last_name
+        classroom
+        birth_date
+        image_url
+        contacts {
+          name
+          email
+          phone
+          relation
+        }
+        medical_record {
+          student_height
+          student_weight
+          covid1
+          covid2
+        }
+      }}` });
     return response.getStudentById;
   }
 
@@ -85,20 +103,23 @@ class MomApi {
   static async addKid(kid) {
     const { first_name, last_name, birth_date, classroom } = kid;
     console.log("kid", kid);
-    let response = await axios.post(BASE_URL, {
-      query: `mutation {
-        addStudent(
-          first_name: "${first_name}",
-          last_name: "${last_name}",
-          birth_date: "${birth_date}",
-          classroom: "${classroom}"
-        )
-      }`
-    }, {
-      headers: {
-        'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
-      }
-    }).then(res => console.log("res", res)).catch(err => console.log("err", err));
+    let response = await axios.post("https://test-mom-api.herokuapp.com", {
+      // query: `mutation {
+      //   addStudent(
+      first_name,
+      last_name,
+      birth_date,
+      classroom
+      //   )
+      // }`
+    }
+      // ,
+      // {
+      //   headers: {
+      //     'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
+      //   }
+      // }
+    ).then(res => console.log("res", res)).catch(err => console.log("err", err));
 
     return response.addKid;
   }

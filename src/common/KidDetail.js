@@ -18,13 +18,12 @@ function KidDetail() {
   const params = useParams();
   const [kid, setKid] = useState({});
 
-  kid.imgUrl = "https://www.parsonsphotography.com/assets/img_pages/fall_sample1-86c43874e4eb031c820526b6ba0eafb304b869d1acf9d82981a09fcef7405edc.jpg";
-  kid.fullName = `${kid.first_name} ${kid.last_name}`;
-
   /** API call to retrieve single kid on initial render */
   useEffect(function getKidOnMount() {
     async function getKid() {
       const kid = await MomApi.getKid(params.id);
+      kid.fullName = `${kid.first_name} ${kid.last_name}`;
+      console.log(kid.contacts, ".....", kid.medical_record);
       setKid({ ...kid });
     }
     getKid();
@@ -33,17 +32,57 @@ function KidDetail() {
 
   /** Displays company details and JobsCardList of associated jobs */
   function renderKidDetails() {
-    if (!kid.first_name) {
+    if (!Object.keys(kid).length) {
       return <i>Loading...</i>;
     } else {
       return (
         <>
-          <img src={kid.imgUrl} alt={kid.fullName} />
-          <h1 className="mt-3 display-5">{kid.fullName}</h1>
-          <h5 className="mb-3 fw-light">{kid.classroom}</h5>
-          <p className="mb-3 fw-light">{kid.birth_date}</p>
-          <p className="mb-3 fw-light">{kid.contacts[0].name}</p>
-          <p className="mb-3 fw-light">{kid.medical_record.student_height} </p>
+          <div className="row container-flex mb-5 me-5">
+            <div className="col-6 mt-5">
+              <img src={kid.image_url} alt={kid.fullName}
+                className="img-thumbnail h-75" />
+            </div>
+            <div className="col-6 mt-5">
+              <h1 className="mt-3 display-5 text-start">{kid.fullName}</h1>
+              <h5 className="mb-3 fw-light text-start">Classroom: {kid.classroom}</h5>
+              <p className="mb-3 fw-light text-start">Birthday: {kid.birth_date}</p>
+              <p className="mb-3 fw-light text-start">Primary Guardian: {kid.contacts[0].name}</p>
+            </div>
+            <h3>{kid.first_name}'s Info: </h3>
+            <div className="accordion ms-5 me-5" id="infoAccordion">
+              <div className="accordion-item ms-5 me-5">
+                <h2 className="accordion-header" id="headingOne">
+                  <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Contacts
+                  </button>
+                </h2>
+                <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div className="accordion-body">
+                    <ul>
+                      {kid.contacts.map(contact => <li> <strong> {contact.name}</strong>: {contact.relation}, {contact.email}, {contact.phone} </li>)}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="accordion-item ms-5 me-5">
+                <h2 className="accordion-header" id="headingTwo">
+                  <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Medical Record
+                  </button>
+                </h2>
+                <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div className="accordion-body">
+                    <h5><strong>Basic Details</strong></h5>
+                    <p> Current Height: {kid.medical_record.student_height} in.</p>
+                    <p> Current Weight: {kid.medical_record.student_weight} lbs.</p>
+                    <h5><strong>Immunizations</strong></h5>
+                    <p>Covid 1st dose: {kid.medical_record.covid1}</p>
+                    <p>Covid 2nd dose: {kid.medical_record.covid2}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       );
     }
