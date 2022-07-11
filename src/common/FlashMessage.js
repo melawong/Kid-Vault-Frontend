@@ -7,10 +7,9 @@
  * - alertStatus: string
  */
 
- function FlashMessage({ message, alertStatus }) {
+function FlashMessage({ message, alertStatus }) {
   return (
     <div
-      style={{ maxHeight: "20px" }}
       className={`pb-3 pt-1 alert alert-dismissible alert-${alertStatus}`}
     >
       {message}
