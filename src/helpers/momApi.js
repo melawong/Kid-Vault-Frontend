@@ -119,14 +119,27 @@ class MomApi {
   /** Add a kid to database, returns confirmation { "added": {kid} } */
   static async addKid(kid) {
     const { first_name, last_name, birth_date, classroom } = kid;
-    let response = await this.request({
+    const body = {
       query: `mutation {
-        addStudent(first_name:${first_name}, last_name:${last_name}, birth_date:${birth_date}, classroom:${classroom})
-      }`
-    }
-    );
-    console.log("response", response);
-    return response.addKid;
+        addStudent(
+          first_name: "${first_name}",
+          last_name: "${last_name}",
+          birth_date: "${birth_date}",
+          classroom: "${classroom}",
+          image_url: ""
+      )}`
+    };
+
+    let response = await axios({
+      url: BASE_URL,
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
+      },
+      data: body
+    }).then(res => res);
+
+    return response;
   }
 }
 

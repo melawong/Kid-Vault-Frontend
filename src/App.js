@@ -84,7 +84,7 @@ function App() {
 
     setUser((user) => ({
       ...user,
-      kids: new Set([...user.kids, newKid]),
+      // kids: new Set([...user.kids, newKid]),
     }));
     return newKid;
   }
