@@ -23,14 +23,13 @@ function KidDetail() {
     async function getKid() {
       const kid = await MomApi.getKid(params.id);
       kid.fullName = `${kid.first_name} ${kid.last_name}`;
-      console.log(kid.contacts, ".....", kid.medical_record);
       setKid({ ...kid });
     }
     getKid();
   }, [params.id]);
 
 
-  /** Displays company details and JobsCardList of associated jobs */
+  /** Displays kid details */
   function renderKidDetails() {
     if (!Object.keys(kid).length) {
       return <i>Loading...</i>;
@@ -46,7 +45,7 @@ function KidDetail() {
               <h1 className="mt-3 display-5 text-start">{kid.fullName}</h1>
               <h5 className="mb-3 fw-light text-start">Classroom: {kid.classroom}</h5>
               <p className="mb-3 fw-light text-start">Birthday: {kid.birth_date}</p>
-              <p className="mb-3 fw-light text-start">Primary Guardian: {kid.contacts[0].name}</p>
+              <p className="mb-3 fw-light text-start">Primary Guardian: {kid.contacts.length ? kid.contacts[0].name : "No Guardian Yet"}</p>
               <h3 classname="text-start">{kid.first_name}'s Info: </h3>
               <div className="accordion" id="infoAccordion">
                 <div className="accordion-item">
@@ -58,7 +57,12 @@ function KidDetail() {
                   <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ul>
-                        {kid.contacts.map(contact => <li> <strong> {contact.name}</strong>: {contact.relation}, {contact.email}, {contact.phone} </li>)}
+                        {kid.contacts.length > 0 ?
+                          kid.contacts.map(
+                            contact => <li> <strong> {contact.name}</strong>: {contact.relation}, {contact.email}, {contact.phone} </li>
+                          )
+                          : "No Contacts Yet"
+                        }
                       </ul>
                     </div>
                   </div>
@@ -72,11 +76,18 @@ function KidDetail() {
                   <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <h5><strong>Basic Details</strong></h5>
-                      <p> Current Height: {kid.medical_record.student_height} in.</p>
-                      <p> Current Weight: {kid.medical_record.student_weight} lbs.</p>
-                      <h5><strong>Immunizations</strong></h5>
-                      <p>Covid 1st dose: {kid.medical_record.covid1}</p>
-                      <p>Covid 2nd dose: {kid.medical_record.covid2}</p>
+                      {kid.medical_record ? (
+                        <>
+                          <p> Current Height: {kid.medical_record.student_height} in.</p>
+                          <p> Current Weight: {kid.medical_record.student_weight} lbs.</p>
+                          <h5><strong>Immunizations</strong></h5>
+                          <p>Covid 1st dose: {kid.medical_record.covid1}</p>
+                          <p>Covid 2nd dose: {kid.medical_record.covid2}</p>
+                        </>
+                      )
+                        :
+                        "No Medical Record Yet"
+                      }
                     </div>
                   </div>
                 </div>
