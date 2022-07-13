@@ -27,12 +27,12 @@ function SchoolQueries() {
       <form className="SchoolQueriesForm mx-auto col-6" onSubmit={handleSubmit}>
         <label htmlFor="chosenQuery" className="form-label mt-4">Choose A Query</label>
         <input
-          id="studentId"
-          name="studentId"
+          id="id"
+          name="id"
           className="form-control"
           placeholder="Enter student id"
           onChange={handleChange}
-          value={formData.id}
+          value={formData["id"]}
         />
         <select
           onChange={handleChange}

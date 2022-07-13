@@ -35,8 +35,8 @@ class MomApi {
 
   // Individual API routes
 
-   /** Sign up a user, returns token */
-   static async signUp(formData) {
+  /** Sign up a user, returns token */
+  static async signUp(formData) {
     const { first_name, last_name, username, password, email, phone } = formData;
     let response = await this.request({
       query: `mutation {
@@ -158,8 +158,21 @@ class MomApi {
   }
 
   static async getCovidList(id) {
-    
-
+    let response = await this.request({
+      query: `{getCovidList(id: ${+id}) {
+        first_name
+        last_name
+        id
+        primary_contact {
+          name
+          phone
+          email
+          relation
+        }
+      }
+    }`
+    });
+    return response.getCovidList;
   }
 }
 
