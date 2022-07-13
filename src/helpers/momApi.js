@@ -86,23 +86,26 @@ class MomApi {
     }`
     };
 
-    let response = await axios({
-      url: BASE_URL,
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
-      },
-      data: body
-    }).then(res => res);
-
-    return response;
+    let response = await this.request({ body });
+    console.log("token", response.addUser.token);
+    return response.addUser.token;
   }
 
-  //   /** Log in a user, return token */
-  //   static async login(formData) {
-  //     let res = await this.request("auth/token", formData, "post");
-  //     return res.token;
-  //   }
+  /** Log in a user, return token */
+  static async login(formData) {
+    const { username, password } = formData;
+    let response = await this.request({
+      query: `mutation {
+        loginUser(
+          username: "${username}",
+          password: "${password}"
+          )}`
+    });
+    console.log("got here");
+    console.log("token", response);
+    console.log("got here 2");
+    return response.loginUser.token;
+  }
 
   //   /** Get user */
   //   static async getUser(username) {

@@ -10,7 +10,7 @@ import jwtDecode from "jwt-decode";
 
 /** App renders Navbar component and RoutesList */
 
-const TOKEN_NAME = "joblyToken";
+const TOKEN_NAME = "parentToken";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,37 +20,35 @@ function App() {
   useEffect(
     function getUserOnMount() {
       async function getUser() {
-        // if (token) {
-        //   JoblyApi.token = token;
-        //   const username = jwtDecode(token).username;
-        //   const userInfo = await JoblyApi.getUser(username);
-        //   // want an array of job objects. we have array of job ids
-        //   const jobPromises = userInfo.applications.map((id) =>
-        //     JoblyApi.getJob(id)
-        //   );
-        //   const jobs = await Promise.all(jobPromises);
-        //   setUser({
-        //     ...userInfo,
-        //     applications: new Set(userInfo.applications),
-        //     jobs,
-        //   });
-        // }
-        setUser(true);
+        if (token) {
+          MomApi.token = token;
+          const username = jwtDecode(token).username;
+          // const userInfo = await MomApi.getUser(username);
+          // want an array of job objects. we have array of job ids
+          // const jobPromises = userInfo.applications.map((id) =>
+          //   MomApi.getJob(id)
+          // );
+          // const jobs = await Promise.all(jobPromises);
+          setUser({username
+            // ...userInfo,
+            // applications: new Set(userInfo.applications),
+            // jobs,
+          });
+        }
         setLoaded(true);
       }
       getUser();
     },
-    // [token]
-    []
+    [token]
   );
 
-  // /** Make API call to log in user */
+  /** Make API call to log in user */
 
-  // async function handleLogin(formData) {
-  //   const userToken = await JoblyApi.login(formData);
-  //   setToken(userToken);
-  //   localStorage.setItem(TOKEN_NAME, userToken);
-  // }
+  async function handleLogin(formData) {
+    const userToken = await MomApi.login(formData);
+    setToken(userToken);
+    localStorage.setItem(TOKEN_NAME, userToken);
+  }
 
   /** Make API call to sign up user */
 
@@ -95,8 +93,8 @@ function App() {
         <UserContext.Provider
           value={{
             user,
-            // token,
-            // handleLogin,
+            token,
+            handleLogin,
             handleSignup,
             logout,
             handleUserUpdate,

@@ -15,7 +15,7 @@ function Home() {
         </h3>
         {user ? (
           <h4 className="homepage-text fw-bolder">
-            Welcome Back, {user.firstName}!
+            Welcome Back, {user.username}!
           </h4>
         ) : (
           <>
