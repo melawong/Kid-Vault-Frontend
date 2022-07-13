@@ -73,8 +73,7 @@ class MomApi {
   /** Sign up a user, returns token */
   static async signUp(formData) {
     const { first_name, last_name, username, password, email, phone } = formData;
-
-    const body = {
+    let response = await this.request({
       query: `mutation {
       addUser(
         first_name: "${first_name}",
@@ -82,12 +81,9 @@ class MomApi {
         username: "${username}",
         password: "${password}",
         email: "${email}",
-        phone: "${phone}")
-    }`
-    };
-
-    let response = await this.request({ body });
-    console.log("token", response.addUser.token);
+        phone: "${phone}"
+        )}`
+    });
     return response.addUser.token;
   }
 
@@ -101,9 +97,6 @@ class MomApi {
           password: "${password}"
           )}`
     });
-    console.log("got here");
-    console.log("token", response);
-    console.log("got here 2");
     return response.loginUser.token;
   }
 
