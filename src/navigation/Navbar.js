@@ -40,12 +40,12 @@ function Navbar() {
       <>
         <li className="nav-item">
           <Link to={`/login`} className="nav-link" href="#">
-            Login
+            Log in
           </Link>
         </li>
         <li className="nav-item">
           <Link to={`/signup`} className="nav-link" href="#">
-            Signup
+            Sign up
           </Link>
         </li>
       </>

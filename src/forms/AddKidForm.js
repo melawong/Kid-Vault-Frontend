@@ -60,10 +60,10 @@ function AddKidForm() {
   return (
     <form className="UpdateUserForm" onSubmit={handleSubmit}>
       <h2 className="mt-2">Add A New Kid!</h2>
-      <div className="mb-3 col-md-6 mx-auto mt-2">
+      <div className="mb-3 col-md-6 mx-auto mt-3">
         {renderFormFields()}
         {renderFlashMessage()}
-        <button className="btn btn-info">Add</button>
+        <button className="btn btn-info mt-3">Add</button>
       </div>
     </form>
   );

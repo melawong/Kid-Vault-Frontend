@@ -50,10 +50,10 @@ function LoginForm() {
 
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>
-      <h2 className="mt-2">Login</h2>
-      <div className="mb-3">
+      <h2 className="mt-2">Log in</h2>
+      <div className="mb-3 mt-3">
         {renderFormFields()}
-        <button className="btn btn-info">Submit!</button>
+        <button className="btn btn-info mt-3">Submit</button>
       </div>
     </form>
   );

@@ -125,7 +125,7 @@ function KidDetail() {
 
 
               </div>
-              
+
             </div>
           </div>
         </>

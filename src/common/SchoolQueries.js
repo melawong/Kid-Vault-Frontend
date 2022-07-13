@@ -32,7 +32,7 @@ function SchoolQueries() {
         <input
           id="id"
           name="id"
-          className="form-control"
+          className="form-control mt-3"
           placeholder="Enter student id"
           onChange={handleChange}
           value={formData["id"]}
@@ -48,7 +48,7 @@ function SchoolQueries() {
           <option>2</option>
           <option>3</option>
         </select>
-        <button className="btn btn-info w-25 mx-auto">Run</button>
+        <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
       </form>
       <section id="results">
 

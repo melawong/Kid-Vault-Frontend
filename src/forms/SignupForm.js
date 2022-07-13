@@ -55,9 +55,9 @@ function SignupForm() {
   return (
     <form className="SignupForm" onSubmit={handleSubmit}>
       <h2 className="mt-2">Sign Up</h2>
-      <div className="mb-3">
+      <div className="mt-3">
         {renderFormFields()}
-        <button className="btn btn-info">Submit!</button>
+        <button className="btn btn-info mt-3">Submit!</button>
       </div>
     </form>
   );

@@ -78,10 +78,10 @@ function UserProfileForm() {
   return (
     <form className="UpdateUserForm" onSubmit={handleSubmit}>
       <h2 className="mt-2">Edit Profile</h2>
-      <div className="mb-3 col-6 mx-auto mt-2">
+      <div className="mb-3 col-6 mx-auto mt-3">
         {renderFormFields()}
         {renderFlashMessage()}
-        <button disabled={user.username === "school" ? true : false} className="btn btn-info">Save</button>
+        <button disabled={user.username === "school" ? true : false} className="btn btn-info mt-3">Save</button>
       </div>
     </form>
   );
