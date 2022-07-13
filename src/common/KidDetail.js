@@ -42,47 +42,30 @@ function KidDetail() {
                 className="img-thumbnail height-auto" />
             </div>
             <div className="col-6 mt-5">
-              <h1 className="mt-3 display-5 text-start">{kid.fullName}</h1>
-              <p className="mb-3 fw-light text-start">Birthday: {kid.birth_date}</p>
-              <p className="mb-3 fw-light text-start">Primary Guardian: {kid.contacts.length ? kid.contacts[0].name : "No Guardian Yet"}</p>
-              <p className="mb-3 fw-light text-start">Classroom: {kid.classroom}</p>
-              {/* <h3 classname="text-start">{kid.first_name}'s Info: </h3> */}
+              <h1 className="display-5 text-start">{kid.fullName}</h1>
+
+
               <div className="accordion" id="infoAccordion">
+
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Contacts
-                    </button>
-                  </h2>
-                  <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <ul>
-                        {kid.contacts.length > 0 ?
-                          kid.contacts.map(
-                            contact => <li> <strong> {contact.name}</strong> Relation: {contact.relation} Email: {contact.email} Phone: {contact.phone} </li>
-                          )
-                          : "No Contacts Yet"
-                        }
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingTwo">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       Medical Record
                     </button>
                   </h2>
-                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                      <h5><strong>Basic Details</strong></h5>
+                      <h5><strong>Physical Stats</strong></h5>
                       {kid.medical_record ? (
                         <>
+                          <p> Birth Date: {kid.birth_date}</p>
                           <p> Current Height: {kid.medical_record.student_height} in.</p>
                           <p> Current Weight: {kid.medical_record.student_weight} lbs.</p>
+                          <br></br>
                           <h5><strong>Immunizations</strong></h5>
                           <p>Covid 1st dose: {kid.medical_record.covid1}</p>
                           <p>Covid 2nd dose: {kid.medical_record.covid2}</p>
+                          {/* <p>Flu: {kid.medical_record.flu}</p> */}
                         </>
                       )
                         :
@@ -91,7 +74,46 @@ function KidDetail() {
                     </div>
                   </div>
                 </div>
+
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingTwo">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      Emergency Contacts
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div className="accordion-body">
+                      <ol>
+                        {kid.contacts.length > 0 ?
+                          kid.contacts.map(
+                            contact => <li align="left"> <strong> {contact.name}</strong> <ul><li>{contact.relation}</li><li>email: {contact.email}</li><li>phone: {contact.phone}</li></ul><p></p></li>
+                          )
+                          : "No Contacts Yet"
+                        }
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingThree">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                      School Information
+                    </button>
+                  </h2>
+                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div className="accordion-body">
+                      <p className="mb-3 fw-light text-center">Home Room: {kid.classroom}</p>
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
+
             </div>
           </div>
         </>
