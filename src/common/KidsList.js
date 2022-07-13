@@ -14,7 +14,7 @@ function KidsList() {
     getKids();
   }, []);
 
-  if (kids.length > 0) {
+  if (kids.length) {
     return (
       <div>
         {kids.map(kid => <KidCard key={kid.id} kid={kid} />)}
