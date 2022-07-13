@@ -24,7 +24,6 @@ function KidDetail() {
     async function getKid() {
       const kid = await MomApi.getKid(params.id);
       setKid({ ...kid });
-      console.log("KID", kid);
     }
     getKid();
   }, [params.id]);
@@ -66,7 +65,7 @@ function KidDetail() {
                           <h5><strong>Immunizations</strong></h5>
                           <p>Covid 1st dose: {kid.medical_records.covid1}</p>
                           <p>Covid 2nd dose: {kid.medical_records.covid2}</p>
-                          {/* <p>Flu: {kid.medical_record.flu}</p> */}
+                          <p>Flu: {kid.medical_records.flu}</p>
                         </>
                       )
                         :
@@ -86,7 +85,7 @@ function KidDetail() {
                   <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ol>
-                        {kid.contacts_list ?
+                        {kid.contacts_list.length ?
                           kid.contacts_list.map(
                             contact => <li align="left"> <strong> {contact.name}</strong> <ul><li>{contact.relation}</li><li>email: {contact.email}</li><li>phone: {contact.phone}</li></ul><p></p></li>
                           )
