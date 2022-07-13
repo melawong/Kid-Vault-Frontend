@@ -38,7 +38,7 @@ class MomApi {
 
   static async getMyKids() {
     let response = await this.request({
-      query: '{getStudentsList {first_name last_name id}}'
+      query: '{getStudentsList {first_name last_name id image_url}}'
     });
     return response.getStudentsList;
   }
@@ -47,7 +47,7 @@ class MomApi {
 
   static async getKid(id) {
     let response = await this.request({
-      query: `{getStudents(student_id: ${id})
+      query: `{getStudents(student_id: 1)
       {
         first_name
         last_name
