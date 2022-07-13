@@ -36,7 +36,7 @@ class MomApi {
 
   /** Get list of all user's kids. */
 
-  static async getMyKids() {
+  static async getAllKids() {
     let response = await this.request({
       query: '{getStudentsList {first_name last_name id image_url}}'
     });
