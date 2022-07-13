@@ -49,15 +49,17 @@
   background-attachment: fixed;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background-position: center;
 }
 
 .homepage-title {
-  text-shadow: 3px 3px 3px #0c0b0a;
+  display: flex;
+  justify-content: center;
 }
 
 .homepage-text {
-  text-shadow: 2px 2px 2px #0c0b0a;
+  display: flex;
+  justify-content: center;
 }
 

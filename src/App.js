@@ -5,7 +5,6 @@ import MomApi from "./helpers/momApi";
 import Navbar from "./navigation/Navbar";
 import RoutesList from "./navigation/RoutesList";
 import UserContext from "./userContext";
-// import JoblyApi from "./helpers/joblyApi";
 import jwtDecode from "jwt-decode";
 
 /** App renders Navbar component and RoutesList */
@@ -71,10 +70,7 @@ function App() {
   async function handleAddKid(kid) {
     const newKid = await MomApi.addKid(kid);
 
-    setUser((user) => ({
-      ...user,
-      // kids: new Set([...user.kids, newKid]),
-    }));
+    setUser((user) => ({ ...user }));
     return newKid;
   }
 

@@ -115,6 +115,12 @@ class MomApi {
           last_name
           phone
           username
+          students_list {
+            id
+            first_name
+            last_name
+            image_url
+          }
         }
       }` });
     return response.getUserByUsername;
