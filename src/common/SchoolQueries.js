@@ -16,17 +16,24 @@ function SchoolQueries() {
   async function handleSubmit(evt) {
     evt.preventDefault();
     await handleSchoolQuery(formData);
-    setFormData(null);
     setHasSubmitted(true);
   }
 
   return (
-    <>
-      <form class="SchoolQueriesForm form-group row" onSubmit={handleSubmit}>
+    <div className="row">
+      <form className="SchoolQueriesForm mx-auto col-6" onSubmit={handleSubmit}>
         <label htmlFor="chosenQuery" className="form-label mt-4">Choose A Query</label>
+        <input
+          id="studentId"
+          name="studentId"
+          className="form-control"
+          placeholder="Enter student id"
+          onChange={handleChange}
+          value=""
+        />
         <select
           onChange={handleChange}
-          className="form-select w-50 mx-auto"
+          className="form-select mt-2 mb-2"
           id="chosenQuery"
           value={formData.chosenQuery}
           name="chosenQuery"
@@ -40,7 +47,7 @@ function SchoolQueries() {
       <div>
 
       </div>
-    </>);
+    </div>);
 }
 
 export default SchoolQueries;

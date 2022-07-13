@@ -13,8 +13,9 @@ class MomApi {
   static key = process.env.REACT_APP_API_KEY;
   static token = "";
 
-  static async request(data = {}, method = "POST") {
+  // Base API Request format
 
+  static async request(data = {}, method = "POST") {
     const url = `${BASE_URL}`;
     const headers = {
       'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
@@ -34,8 +35,37 @@ class MomApi {
 
   // Individual API routes
 
-  /** Get list of all user's kids. */
+   /** Sign up a user, returns token */
+   static async signUp(formData) {
+    const { first_name, last_name, username, password, email, phone } = formData;
+    let response = await this.request({
+      query: `mutation {
+      addUser(
+        first_name: "${first_name}",
+        last_name: "${last_name}",
+        username: "${username}",
+        password: "${password}",
+        email: "${email}",
+        phone: "${phone}"
+        )}`
+    });
+    return response.addUser.token;
+  }
 
+  /** Log in a user, return token */
+  static async login(formData) {
+    const { username, password } = formData;
+    let response = await this.request({
+      query: `mutation {
+        loginUser(
+          username: "${username}",
+          password: "${password}"
+          )}`
+    });
+    return response.loginUser.token;
+  }
+
+  /** Get array of all kids. */
   static async getAllKids() {
     let response = await this.request({
       query: '{getStudentsList {first_name last_name id image_url}}'
@@ -44,7 +74,6 @@ class MomApi {
   }
 
   /** Returns details on kid by id */
-
   static async getKid(id) {
     let response = await this.request({
       query: `{getStudents(id: ${id})
@@ -76,37 +105,7 @@ class MomApi {
     return response.getStudents;
   }
 
-  /** Sign up a user, returns token */
-  static async signUp(formData) {
-    const { first_name, last_name, username, password, email, phone } = formData;
-    let response = await this.request({
-      query: `mutation {
-      addUser(
-        first_name: "${first_name}",
-        last_name: "${last_name}",
-        username: "${username}",
-        password: "${password}",
-        email: "${email}",
-        phone: "${phone}"
-        )}`
-    });
-    return response.addUser.token;
-  }
-
-  /** Log in a user, return token */
-  static async login(formData) {
-    const { username, password } = formData;
-    let response = await this.request({
-      query: `mutation {
-        loginUser(
-          username: "${username}",
-          password: "${password}"
-          )}`
-    });
-    return response.loginUser.token;
-  }
-
-  /** Get user */
+  /** Get user info, with student list */
   static async getUser(username) {
     let response = await this.request({
       query: `{ getUserByUsername(username: "${username}") {
@@ -156,6 +155,11 @@ class MomApi {
       )}`
     });
     return response.addStudent;
+  }
+
+  static async getCovidList(id) {
+    
+
   }
 }
 

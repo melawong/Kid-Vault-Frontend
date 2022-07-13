@@ -33,7 +33,6 @@ function App() {
   );
 
   /** Make API call to log in user */
-
   async function handleLogin(formData) {
     const userToken = await MomApi.login(formData);
     setToken(userToken);
@@ -41,7 +40,6 @@ function App() {
   }
 
   /** Make API call to sign up user */
-
   async function handleSignup(formData) {
     const newUserToken = await MomApi.signUp(formData);
     setToken(newUserToken);
@@ -56,6 +54,7 @@ function App() {
     setUser(null);
   }
 
+  /* Update user information */
   async function handleUserUpdate(username, formData) {
     const updatedUserInfo = await MomApi.updateUser(username, formData);
 
@@ -67,11 +66,17 @@ function App() {
     return updatedUserInfo;
   }
 
+  /* Add a student to the database */
   async function handleAddKid(kid) {
     const newKid = await MomApi.addKid(kid);
 
     setUser((user) => ({ ...user }));
     return newKid;
+  }
+
+  /* Run covid query for school use */
+  async function handleSchoolQuery(formData) {
+    return await MomApi.getCovidList(formData.id);
   }
 
   return loaded ? (
@@ -86,6 +91,7 @@ function App() {
             logout,
             handleUserUpdate,
             handleAddKid,
+            handleSchoolQuery
           }}
         >
           <Navbar />
