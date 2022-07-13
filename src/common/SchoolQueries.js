@@ -4,7 +4,10 @@ import UserContext from "../userContext";
 function SchoolQueries() {
   const { handleSchoolQuery } = useContext(UserContext);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ chosenQuery: "Covid Positive Student Contact List" });
+  const [formData, setFormData] = useState({
+    chosenQuery: "Covid Positive Student Contact List",
+    id: ""
+  });
 
   /** Update form input. */
   function handleChange(evt) {
@@ -29,7 +32,7 @@ function SchoolQueries() {
           className="form-control"
           placeholder="Enter student id"
           onChange={handleChange}
-          value=""
+          value={formData.id}
         />
         <select
           onChange={handleChange}
