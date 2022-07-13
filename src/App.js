@@ -20,21 +20,12 @@ function App() {
   useEffect(
     function getUserOnMount() {
       async function getUser() {
-        console.log("token", token)
         if (token) {
           MomApi.token = token;
           const username = jwtDecode(token).sub;
-          // const userInfo = await MomApi.getUser(username);
-          // want an array of job objects. we have array of job ids
-          // const jobPromises = userInfo.applications.map((id) =>
-          //   MomApi.getJob(id)
-          // );
-          // const jobs = await Promise.all(jobPromises);
-          setUser({username : username
-            // ...userInfo,
-            // applications: new Set(userInfo.applications),
-            // jobs,
-          });
+          const userInfo = await MomApi.getUser(username);
+          console.log(userInfo)
+          setUser({ ...userInfo, });
         }
         setLoaded(true);
       }

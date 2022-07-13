@@ -38,16 +38,16 @@ class MomApi {
 
   static async getMyKids() {
     let response = await this.request({
-      query: '{getAllStudents {first_name last_name id}}'
+      query: '{getStudentsList {first_name last_name id}}'
     });
-    return response.getAllStudents;
+    return response.getStudentsList;
   }
 
   /** Returns details on kid by id */
 
   static async getKid(id) {
     let response = await this.request({
-      query: `{getStudentById(student_id: ${id})
+      query: `{getStudents(student_id: ${id})
       {
         first_name
         last_name
@@ -67,7 +67,7 @@ class MomApi {
           covid2
         }
       }}` });
-    return response.getStudentById;
+    return response.getStudents;
   }
 
   /** Sign up a user, returns token */
@@ -100,13 +100,22 @@ class MomApi {
     return response.loginUser.token;
   }
 
-  //   /** Get user */
-  //   static async getUser(username) {
-  //     let res = await this.request(`users/${username}`);
-  //     return res.user;
-  //   }
+  /** Get user */
+  static async getUser(username) {
+    let response = await this.request({
+      query: `{ getUserByUsername(username: "${username}") {
+          first_name
+          email
+          last_name
+          phone
+          username
+        }
+      }` });
+      console.log("response", response)
+    return response;
+  }
 
-  //   /** Log in a user, return token */
+  //   /** Update a user */
   //   static async updateUser(username, formData) {
   //     let res = await this.request(`users/${username}`, formData, "patch");
   //     return res.user;
@@ -115,7 +124,7 @@ class MomApi {
   /** Add a kid to database, returns confirmation { "added": {kid} } */
   static async addKid(kid) {
     const { first_name, last_name, birth_date, classroom } = kid;
-    const body = {
+    let response = await this.request({
       query: `mutation {
         addStudent(
           first_name: "${first_name}",
@@ -124,18 +133,8 @@ class MomApi {
           classroom: "${classroom}",
           image_url: ""
       )}`
-    };
-
-    let response = await axios({
-      url: BASE_URL,
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json', 'Authorization': "apikey " + this.key
-      },
-      data: body
-    }).then(res => res);
-
-    return response;
+    })
+    return response.addStudent;
   }
 }
 
