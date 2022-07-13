@@ -49,7 +49,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="container-fluid">
           <Link to={`/`} className="navbar-brand" href="#">
             Kid Vault

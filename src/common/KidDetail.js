@@ -39,14 +39,14 @@ function KidDetail() {
           <div className="row container-flex mb-5 me-5">
             <div className="col-6 mt-5">
               <img src={kid.image_url} alt={kid.fullName}
-                className="img-thumbnail h-75" />
+                className="img-thumbnail height-auto" />
             </div>
             <div className="col-6 mt-5">
               <h1 className="mt-3 display-5 text-start">{kid.fullName}</h1>
-              <h5 className="mb-3 fw-light text-start">Classroom: {kid.classroom}</h5>
               <p className="mb-3 fw-light text-start">Birthday: {kid.birth_date}</p>
               <p className="mb-3 fw-light text-start">Primary Guardian: {kid.contacts.length ? kid.contacts[0].name : "No Guardian Yet"}</p>
-              <h3 classname="text-start">{kid.first_name}'s Info: </h3>
+              <p className="mb-3 fw-light text-start">Classroom: {kid.classroom}</p>
+              {/* <h3 classname="text-start">{kid.first_name}'s Info: </h3> */}
               <div className="accordion" id="infoAccordion">
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
@@ -59,7 +59,7 @@ function KidDetail() {
                       <ul>
                         {kid.contacts.length > 0 ?
                           kid.contacts.map(
-                            contact => <li> <strong> {contact.name}</strong>: {contact.relation}, {contact.email}, {contact.phone} </li>
+                            contact => <li> <strong> {contact.name}</strong> Relation: {contact.relation} Email: {contact.email} Phone: {contact.phone} </li>
                           )
                           : "No Contacts Yet"
                         }

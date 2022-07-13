@@ -7,13 +7,13 @@ function Home() {
   return (
     <div className="homepage">
       <div className="col-12">
-        <h1 className="homepage-title display-1 fw-bolder pb-5">
+        {/* <h1 className="homepage-title display-1 fw-bolder pb-5">
           <strong>Kid Vault</strong>
-        </h1>
+        </h1> */}
         <h3 className="homepage-text fw-bolder pt-4 mt-4">
-          All your kids, in one convenient place.
+          A GraphQL API for busy parents.
         </h3>
-        {user ? (
+        {/* {user ? (
           <h4 className="homepage-text fw-bolder">
             Welcome Back, {user.username}!
           </h4>
@@ -29,8 +29,8 @@ function Home() {
                 Signup
               </Link>
             </button>
-          </>
-        )}
+          </> */}
+        {/* )} */}
       </div>
     </div>
   );

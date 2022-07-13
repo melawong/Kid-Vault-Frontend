@@ -39,12 +39,12 @@
 
 .homepage {
   height: 100vh;
-  color: #fff;
+  color: rgb(248, 245, 245);
   background-image: linear-gradient(
       rgba(69, 67, 67, 0.5),
       rgba(67, 67, 67, 0.5)
     ),
-    url("../public/homepage-groupkids.jpg");
+    url("../public/homepage-groupkids2.png");
   background-size: cover;
   background-attachment: fixed;
   display: flex;
