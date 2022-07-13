@@ -11,13 +11,13 @@ import FlashMessage from "../common/FlashMessage";
 
 function UserProfileForm() {
   const { user, handleUserUpdate } = useContext(UserContext);
-  const { username, firstName, lastName, email, phone } = user;
+  const { username, first_name, last_name, email, phone } = user;
   const [hasUpdated, setHasUpdated] = useState(false);
 
   const [formData, setFormData] = useState({
     username,
-    firstName,
-    lastName,
+    first_name,
+    last_name,
     email,
     phone
   });
@@ -31,17 +31,17 @@ function UserProfileForm() {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const { firstName, lastName, email } = formData;
+    const { first_name, last_name, email, phone } = formData;
     const updatedData = await handleUserUpdate(username, {
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       email,
       phone
     });
     setFormData((formData) => ({
       ...formData,
-      firstName: updatedData.firstName,
-      lastName: updatedData.lastName,
+      first_name: updatedData.first_name,
+      last_name: updatedData.last_name,
       email: updatedData.email,
       phone: updatedData.phone
     }));

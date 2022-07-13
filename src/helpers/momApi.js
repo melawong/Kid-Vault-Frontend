@@ -47,24 +47,30 @@ class MomApi {
 
   static async getKid(id) {
     let response = await this.request({
-      query: `{getStudents(student_id: 1)
+      query: `{getStudents(id: 1)
       {
         first_name
         last_name
         classroom
         birth_date
         image_url
-        contacts {
+        contacts_list {
           name
           email
           phone
           relation
+          other
         }
         medical_record {
           student_height
           student_weight
           covid1
           covid2
+          flu
+          mmr
+          polio
+          tb
+          tetanus
         }
       }}` });
     return response.getStudents;
@@ -111,8 +117,7 @@ class MomApi {
           username
         }
       }` });
-      console.log("response", response)
-    return response;
+    return response.getUserByUsername;
   }
 
   //   /** Update a user */

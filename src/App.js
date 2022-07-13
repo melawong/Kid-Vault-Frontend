@@ -24,7 +24,6 @@ function App() {
           MomApi.token = token;
           const username = jwtDecode(token).sub;
           const userInfo = await MomApi.getUser(username);
-          console.log(userInfo)
           setUser({ ...userInfo, });
         }
         setLoaded(true);
