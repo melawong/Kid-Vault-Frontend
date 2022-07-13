@@ -11,13 +11,18 @@ function Navbar() {
     return user ? (
       <>
         <li className="nav-item">
+          <Link to={`/schoolqueries`} className="nav-link" href="#">
+            School Queries
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to={`/mykids`} className="nav-link" href="#">
-            My Kids
+            {user.username === "school" ? "All Students" : "My Kids"}
           </Link>
         </li>
         <li className="nav-item">
           <Link to={`/addkid`} className="nav-link" href="#">
-            Add A Kid
+            Add {user.username === "school" ? "Student" : "Kid"}
           </Link>
         </li>
         <li className="nav-item">
