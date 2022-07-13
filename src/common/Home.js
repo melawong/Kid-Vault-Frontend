@@ -8,10 +8,10 @@ function Home() {
       <div className="col-6"></div>
       <div className="col-6">
         <h3 className="homepage-title fw-bolder pt-4 mt-4">
-          A GraphQL API for busy parents.
+          A GraphQL API for busy parents
         </h3>
         {user ? (
-          <h4 className="homepage-text fw-bolder">
+          <h4 className="homepage-text fw-bolder text-right">
             Welcome Back, {user.first_name}!
           </h4>
         ) : ""}

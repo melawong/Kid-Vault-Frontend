@@ -76,12 +76,12 @@ function KidDetail() {
                 </div>
 
                 <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingThree">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                  <h2 className="accordion-header" id="headingTwo">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                       School Information
                     </button>
                   </h2>
-                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <p className="mb-3 fw-light text-start">Home Room: {kid.classroom}</p>
                     </div>
@@ -89,12 +89,12 @@ function KidDetail() {
                 </div>
 
                 <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingTwo">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  <h2 className="accordion-header" id="headingThree">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                       Emergency Contacts
                     </button>
                   </h2>
-                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ol>
                         {kid.contacts_list.length ?
@@ -108,12 +108,24 @@ function KidDetail() {
                   </div>
                 </div>
 
-
-
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingFour">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      Generate Forms
+                    </button>
+                  </h2>
+                  <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div className="accordion-body text-start">
+                      <p><a href={`/forms/school/${kid.id}`}>School</a></p>
+                      <p><a href={`/forms/camp/${kid.id}`}>Camp</a></p>
+                      <p><a href={`/forms/medical/${kid.id}`}>Medical</a></p>
+                    </div>
+                  </div>
+                </div>
 
 
               </div>
-
+              
             </div>
           </div>
         </>
