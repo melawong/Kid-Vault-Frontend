@@ -47,7 +47,7 @@ class MomApi {
 
   static async getKid(id) {
     let response = await this.request({
-      query: `{getStudents(id: 1)
+      query: `{getStudents(id: ${id})
       {
         first_name
         last_name
@@ -61,7 +61,7 @@ class MomApi {
           relation
           other
         }
-        medical_record {
+        medical_records {
           student_height
           student_weight
           covid1

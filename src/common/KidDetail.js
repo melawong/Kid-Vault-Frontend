@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import AddKidForm from "../forms/AddKidForm";
 import MomApi from "../helpers/momApi";
 
 /** Renders detail on kid based on handle parameter. Makes API call.
@@ -22,8 +23,8 @@ function KidDetail() {
   useEffect(function getKidOnMount() {
     async function getKid() {
       const kid = await MomApi.getKid(params.id);
-      kid.fullName = `${kid.first_name} ${kid.last_name}`;
       setKid({ ...kid });
+      console.log("KID", kid);
     }
     getKid();
   }, [params.id]);
@@ -31,18 +32,18 @@ function KidDetail() {
 
   /** Displays kid details */
   function renderKidDetails() {
-    if (!Object.keys(kid).length) {
+    if (!kid.first_name) {
       return <i>Loading...</i>;
     } else {
       return (
         <>
           <div className="row container-flex mb-5 me-5">
             <div className="col-6 mt-5">
-              <img src={kid.image_url} alt={kid.fullName}
+              <img src={kid.image_url} alt={`${kid.first_name} ${kid.last_name}`}
                 className="img-thumbnail height-auto" />
             </div>
             <div className="col-6 mt-5">
-              <h1 className="display-5 text-start">{kid.fullName}</h1>
+              <h1 className="display-5 text-start">{`${kid.first_name} ${kid.last_name}`}</h1>
 
 
               <div className="accordion" id="infoAccordion">
@@ -56,15 +57,15 @@ function KidDetail() {
                   <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <h5><strong>Physical Stats</strong></h5>
-                      {kid.medical_record ? (
+                      {kid.medical_records ? (
                         <>
                           <p> Birth Date: {kid.birth_date}</p>
-                          <p> Current Height: {kid.medical_record.student_height} in.</p>
-                          <p> Current Weight: {kid.medical_record.student_weight} lbs.</p>
+                          <p> Current Height: {kid.medical_records.student_height} in.</p>
+                          <p> Current Weight: {kid.medical_records.student_weight} lbs.</p>
                           <br></br>
                           <h5><strong>Immunizations</strong></h5>
-                          <p>Covid 1st dose: {kid.medical_record.covid1}</p>
-                          <p>Covid 2nd dose: {kid.medical_record.covid2}</p>
+                          <p>Covid 1st dose: {kid.medical_records.covid1}</p>
+                          <p>Covid 2nd dose: {kid.medical_records.covid2}</p>
                           {/* <p>Flu: {kid.medical_record.flu}</p> */}
                         </>
                       )
@@ -85,8 +86,8 @@ function KidDetail() {
                   <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ol>
-                        {kid.contacts.length > 0 ?
-                          kid.contacts.map(
+                        {kid.contacts_list ?
+                          kid.contacts_list.map(
                             contact => <li align="left"> <strong> {contact.name}</strong> <ul><li>{contact.relation}</li><li>email: {contact.email}</li><li>phone: {contact.phone}</li></ul><p></p></li>
                           )
                           : "No Contacts Yet"
