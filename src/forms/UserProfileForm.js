@@ -56,7 +56,7 @@ function UserProfileForm() {
         <input
           id={f}
           name={f}
-          disabled={f === "username"}
+          disabled={f === "username" || user.username === "school"}
           className="form-control"
           placeholder={`Enter ${f}...`}
           onChange={handleChange}
@@ -81,7 +81,7 @@ function UserProfileForm() {
       <div className="mb-3 col-md-9 mx-auto mt-2">
         {renderFormFields()}
         {renderFlashMessage()}
-        <button className="btn btn-info">Save</button>
+        <button disabled={user.username === "school" ? true : false} className="btn btn-info">Save</button>
       </div>
     </form>
   );
