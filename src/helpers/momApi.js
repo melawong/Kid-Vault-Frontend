@@ -120,11 +120,21 @@ class MomApi {
     return response.getUserByUsername;
   }
 
-  //   /** Update a user */
-  //   static async updateUser(username, formData) {
-  //     let res = await this.request(`users/${username}`, formData, "patch");
-  //     return res.user;
-  //   }
+  /** Update a user */
+  static async updateUser(username, formData) {
+    const { first_name, last_name, email, phone } = formData;
+    let response = await this.request({
+      query: `mutation {
+          updateUser(
+            username: "${username}"
+            first_name: "${first_name}",
+            last_name: "${last_name}",
+            email: "${email}",
+            phone: "${phone}"
+            )}`
+    });
+    return response.updateUser;
+  }
 
   /** Add a kid to database, returns confirmation { "added": {kid} } */
   static async addKid(kid) {
@@ -138,7 +148,7 @@ class MomApi {
           classroom: "${classroom}",
           image_url: ""
       )}`
-    })
+    });
     return response.addStudent;
   }
 }
