@@ -23,7 +23,7 @@ function KidsList() {
   }, []);
 
   return hasLoaded ? (
-    <div className="row display-flex flex-wrap">
+    <div className="row display-flex flex-wrap justify-content-center mt-3">
       {kids.map(kid =>
         <div className="col-2 ms-2 my-2">
           <KidCard key={kid.id} kid={kid} />
