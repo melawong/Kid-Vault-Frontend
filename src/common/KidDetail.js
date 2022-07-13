@@ -54,7 +54,7 @@ function KidDetail() {
                     </button>
                   </h2>
                   <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
+                    <div className="accordion-body text-start">
                       <h5><strong>Physical Stats</strong></h5>
                       {kid.medical_records ? (
                         <>
@@ -106,7 +106,7 @@ function KidDetail() {
                   </h2>
                   <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                      <p className="mb-3 fw-light text-center">Home Room: {kid.classroom}</p>
+                      <p className="mb-3 fw-light text-start">Home Room: {kid.classroom}</p>
                     </div>
                   </div>
                 </div>
