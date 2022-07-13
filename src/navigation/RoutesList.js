@@ -9,6 +9,7 @@ import UserProfile from "../common/UserProfile";
 import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
 import KidDetail from "../common/KidDetail";
+import SchoolQueries from "../common/SchoolQueries";
 
 /** Routes list defines routes for components */
 
@@ -18,6 +19,7 @@ function RoutesList() {
   function renderRoutes() {
     return user ? (
       <>
+        <Route path="/schoolqueries" element={<SchoolQueries />} />
         <Route path="/mykids" element={<KidsList />} />
         <Route path="/mykids/:id" element={<KidDetail />} />
         <Route path="/addkid" element={<AddKidForm />} />
