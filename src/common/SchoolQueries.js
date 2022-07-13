@@ -8,8 +8,7 @@ function SchoolQueries() {
     chosenQuery: "Covid Positive Student Contact List",
     id: ""
   });
-
-  let results;
+  const [results, setResults] = useState([]);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -20,8 +19,8 @@ function SchoolQueries() {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    results = await handleSchoolQuery(formData);
-    console.log("results", results);
+    const queryResults = await handleSchoolQuery(formData);
+    setResults(queryResults);
     setHasSubmitted(true);
   }
 
@@ -50,22 +49,21 @@ function SchoolQueries() {
         </select>
         <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
       </form>
-      <section id="results">
+      <section id="results" className="mt-5">
 
-        <ul>
-          {results && results.map(
+        <ol className="text-start">
+          {results.map(
             student =>
               <li>
-                {student.first_name} {student.last_name} <br />
-                Primary Contact:
+                <strong>Student: </strong>{student.first_name} {student.last_name} <br />
+                <strong>Primary Contact: </strong> {student.primary_contact.name}
                 <ul>
-                  <li> {student.primary_contact.name}</li>
                   <li> {student.primary_contact.relation}</li>
                   <li> {student.primary_contact.email}</li>
                   <li> {student.primary_contact.phone}</li>
                 </ul>
               </li>)}
-        </ul>
+        </ol>
 
       </section>
     </div>);
