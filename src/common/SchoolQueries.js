@@ -9,6 +9,8 @@ function SchoolQueries() {
     id: ""
   });
 
+  let results;
+
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -18,7 +20,8 @@ function SchoolQueries() {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    await handleSchoolQuery(formData);
+    results = await handleSchoolQuery(formData);
+    console.log("results", results);
     setHasSubmitted(true);
   }
 
@@ -47,9 +50,24 @@ function SchoolQueries() {
         </select>
         <button className="btn btn-info w-25 mx-auto">Run</button>
       </form>
-      <div>
+      <section id="results">
 
-      </div>
+        <ul>
+          {results && results.map(
+            student =>
+              <li>
+                {student.first_name} {student.last_name} <br />
+                Primary Contact:
+                <ul>
+                  <li> {student.primary_contact.name}</li>
+                  <li> {student.primary_contact.relation}</li>
+                  <li> {student.primary_contact.email}</li>
+                  <li> {student.primary_contact.phone}</li>
+                </ul>
+              </li>)}
+        </ul>
+
+      </section>
     </div>);
 }
 

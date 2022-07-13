@@ -77,7 +77,7 @@ function App() {
   /* Run covid query for school use */
   async function handleSchoolQuery(formData) {
     const covClassList = await MomApi.getCovidList(formData.id);
-    console.log("covclasslist", covClassList);
+    return covClassList;
   }
 
   return loaded ? (
