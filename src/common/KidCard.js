@@ -18,16 +18,21 @@ function KidCard({ kid }) {
     <Link
       to={`/mykids/${kid.id}`}
       style={{ textDecoration: "none", maxWidth: "50rem" }}
-      className="card text-dark bg-white mb-3 mx-auto d-flex"
+      className="card text-dark bg-white mb-3 mx-5 d-flex"
     >
-      <div className="card-body">
-        <h4 className="card-title">
-          {kid.fullName}
-        </h4>
-        {/* <p> <img src={kid.image_url} alt={kid.fullName}
-                className="img-thumbnail h-75" />
-        </p> */}
+      <div class="container">
+        <div class="row">
+          <div class="col-sm" className="card-body align-center">
+            <p>
+              <img className="img-thumbnail" src={kid.image_url} alt={kid.fullName}/>
+            </p>
+            <h4 className="card-title">
+              {kid.fullName}
+            </h4>
+          </div>
+        </div>
       </div>
+      
     </Link>
   );
 }
