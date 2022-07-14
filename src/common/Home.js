@@ -11,7 +11,7 @@ function Home() {
           A GraphQL API for busy parents
         </h3>
         {user ? (
-          <h4 className="homepage-text fw-bolder justify-content-right">
+          <h4 className="homepage-text fw-bolder text-end">
             Welcome Back, {user.first_name}!
           </h4>
         ) : ""}
