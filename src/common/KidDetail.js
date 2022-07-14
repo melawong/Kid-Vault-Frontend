@@ -45,7 +45,7 @@ function KidDetail() {
         // if(!pulledKid){
         //   getKid()
         // }
-        console.log("hereschool2");
+        console.log("hereschool2", kid);
         setKid(pulledKid);
       }
     }
@@ -81,7 +81,7 @@ function KidDetail() {
                   <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       <h5><strong>Physical Stats</strong></h5>
-                      {kid.medical_records ? (
+                      {kid && kid.medical_records ? (
                         <>
                           <p> Birth Date: {kid.birth_date}</p>
                           <p> Current Height: {kid.medical_records.student_height} in.</p>
@@ -108,7 +108,7 @@ function KidDetail() {
                   </h2>
                   <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                      <p className="mb-3 fw-light text-start">Home Room: {kid.classroom}</p>
+                      <p className="mb-3 fw-light text-start">Home Room: {kid.classroom ? kid.classroom : ""}</p>
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ function KidDetail() {
                   <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ol>
-                        {kid.contacts_list > 0 ?
+                        {kid && kid.contacts_list.length > 0 ?
                           kid.contacts_list.map(
                             contact =>
                               <li align="left" key={contact.name}>
@@ -154,7 +154,7 @@ function KidDetail() {
                       <p><a href={`/forms/school/${kid.id}`}>School</a></p>
                       <p>
                         <Link to={`/mykids/${params.id}/camp`}
-                        state={{from: "KidDetail", kid: kid}}className="nav-link" href="#">
+                          state={{ from: "KidDetail", kid: kid }} className="nav-link" href="#">
                           Camp
                         </Link>
                       </p>
