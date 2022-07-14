@@ -55,12 +55,14 @@
 
 .homepage-title {
   display: flex;
-  justify-content: center;
+  justify-content: right;
+  margin-right: 50px;
 }
 
 .homepage-text {
   display: flex;
-  justify-content: center;
+  justify-content: right;
+  margin-right: 50px;
 }
 
 .card-body {
