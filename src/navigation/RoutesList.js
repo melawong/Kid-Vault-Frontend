@@ -10,6 +10,7 @@ import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
 import KidDetail from "../common/KidDetail";
 import SchoolQueries from "../common/SchoolQueries";
+import CampForm from "../forms/CampForm";
 
 /** Routes list defines routes for components */
 
@@ -22,6 +23,7 @@ function RoutesList() {
         <Route path="/schoolqueries" element={<SchoolQueries />} />
         <Route path="/mykids" element={<KidsList />} />
         <Route path="/mykids/:id" element={<KidDetail />} />
+        <Route path="/mykids/:id/camp" element={<CampForm />} />
         <Route path="/addkid" element={<AddKidForm />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/logout" element={<Navigate to="/" />} />
