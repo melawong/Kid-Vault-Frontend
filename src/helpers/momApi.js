@@ -49,7 +49,7 @@ class MomApi {
         phone: "${phone}"
         )}`
     });
-    return response.addUser.token;
+    return response.signupUser.token;
   }
 
   /** Log in a user, return token */
@@ -68,15 +68,15 @@ class MomApi {
   /** Get array of all kids. */
   static async getAllKids() {
     let response = await this.request({
-      query: '{getStudentsList {first_name last_name id image_url}}'
+      query: '{getStudentList {first_name last_name id image_url}}'
     });
-    return response.getStudentsList;
+    return response.getStudentList;
   }
 
   /** Returns details on kid by id */
   static async getKid(id) {
     let response = await this.request({
-      query: `{getStudents(id: ${id})
+      query: `{getStudent(id: ${id})
       {
         first_name
         last_name
@@ -102,7 +102,7 @@ class MomApi {
           tetanus
         }
       }}` });
-    return response.getStudents;
+    return response.getStudent;
   }
 
   /** Get user info, with student list */
@@ -166,7 +166,7 @@ class MomApi {
     const { first_name, last_name, birth_date, classroom } = kid;
     let response = await this.request({
       query: `mutation {
-        addStudent(
+        insertStudent(
           first_name: "${first_name}",
           last_name: "${last_name}",
           birth_date: "${birth_date}",
@@ -174,7 +174,7 @@ class MomApi {
           image_url: ""
       )}`
     });
-    return response.addStudent;
+    return response.insertStudent;
   }
 
   static async getCovidList(id) {
