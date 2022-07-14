@@ -153,7 +153,8 @@ function KidDetail() {
                     <div className="accordion-body text-start">
                       <p><a href={`/forms/school/${kid.id}`}>School</a></p>
                       <p>
-                        <Link to={`/mykids/${params.id}/camp`} className="nav-link" href="#">
+                        <Link to={`/mykids/${params.id}/camp`}
+                        state={{from: "KidDetail", kid: kid}}className="nav-link" href="#">
                           Camp
                         </Link>
                       </p>

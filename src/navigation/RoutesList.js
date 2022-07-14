@@ -22,8 +22,8 @@ function RoutesList() {
       <>
         <Route path="/schoolqueries" element={<SchoolQueries />} />
         <Route path="/mykids" element={<KidsList />} />
-        <Route path="/mykids/:id" element={<KidDetail />} />
-        <Route path="/mykids/:id/camp" element={<CampForm />} />
+        <Route path="/mykids/:id" element={<KidDetail/>} />
+        <Route path="/mykids/:id/camp" element={<CampForm/>} />
         <Route path="/addkid" element={<AddKidForm />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/logout" element={<Navigate to="/" />} />

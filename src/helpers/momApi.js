@@ -83,6 +83,13 @@ class MomApi {
         classroom
         birth_date
         image_url
+        guardian {
+          name
+          phone
+          other
+          email
+          relation
+        }
         contacts_list {
           name
           email
