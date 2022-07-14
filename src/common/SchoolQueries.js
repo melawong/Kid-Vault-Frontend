@@ -44,7 +44,7 @@ function SchoolQueries() {
           name="chosenQuery"
         >
           <option>Covid Positive Student Contact List</option>
-          <option>2</option>
+          <option>Covid Act Now </option>
           <option>3</option>
         </select>
         <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
