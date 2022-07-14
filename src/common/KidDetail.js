@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import AddKidForm from "../forms/AddKidForm";
 import MomApi from "../helpers/momApi";
 import UserContext from "../userContext";
-import Home from "./Home";
+import { Link } from "react-router-dom";
 
 /** Renders detail on kid based on handle parameter. Makes API call.
  *
@@ -35,18 +34,18 @@ function KidDetail() {
           console.log("here4");
           const pulledKid = await MomApi.getKid(+params.id);
           console.log("here5 + kid", pulledKid);
-          if(!pulledKid){
-            getKid()
+          if (!pulledKid) {
+            getKid();
           }
           setKid(pulledKid);
         }
       } else {
-        console.log("hereschool1")
+        console.log("hereschool1");
         const pulledKid = await MomApi.getKid(+params.id);
         // if(!pulledKid){
         //   getKid()
         // }
-        console.log("hereschool2")
+        console.log("hereschool2");
         setKid(pulledKid);
       }
     }
@@ -153,7 +152,11 @@ function KidDetail() {
                   <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
                       <p><a href={`/forms/school/${kid.id}`}>School</a></p>
-                      <p><a href={`/forms/camp/${kid.id}`}>Camp</a></p>
+                      <p>
+                        <Link to={`/mykids/${params.id}/camp`} className="nav-link" href="#">
+                          Camp
+                        </Link>
+                      </p>
                       <p><a href={`/forms/medical/${kid.id}`}>Medical</a></p>
                     </div>
                   </div>
