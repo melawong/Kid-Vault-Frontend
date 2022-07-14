@@ -25,7 +25,7 @@ function KidDetail() {
   /** API call to retrieve single kid on initial render */
   useEffect(function getKidOnMount() {
     async function getKid() {
-      console.log("here1");
+      console.log("here1", user);
       if (token && user.students_list && user.username !== "school") {
         console.log("here2");
         let accessibleStudentIds = new Set(
@@ -43,9 +43,9 @@ function KidDetail() {
       } else {
         console.log("hereschool1")
         const pulledKid = await MomApi.getKid(+params.id);
-        if(!pulledKid){
-          getKid()
-        }
+        // if(!pulledKid){
+        //   getKid()
+        // }
         console.log("hereschool2")
         setKid(pulledKid);
       }

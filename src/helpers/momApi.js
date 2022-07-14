@@ -76,7 +76,7 @@ class MomApi {
   /** Returns details on kid by id */
   static async getKid(id) {
     let response = await this.request({
-      query: `{getStudent(id: ${id})
+      query: `{getStudent(id: 1)
       {
         first_name
         last_name
