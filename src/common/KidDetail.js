@@ -26,17 +26,28 @@ function KidDetail() {
   useEffect(function getKidOnMount() {
     async function getKid() {
       console.log("here1");
-      if (token && user.students_list) {
+      if (token && user.students_list && user.username !== "school") {
         console.log("here2");
         let accessibleStudentIds = new Set(
           user.students_list.map(student => student.id));
         console.log("here3");
         if (accessibleStudentIds.has(+params.id)) {
           console.log("here4");
-          const kid = await MomApi.getKid(+params.id);
-          console.log("here5 + kid", kid);
-          setKid(kid);
+          const pulledKid = await MomApi.getKid(+params.id);
+          console.log("here5 + kid", pulledKid);
+          if(!pulledKid){
+            getKid()
+          }
+          setKid(pulledKid);
         }
+      } else {
+        console.log("hereschool1")
+        const pulledKid = await MomApi.getKid(+params.id);
+        if(!pulledKid){
+          getKid()
+        }
+        console.log("hereschool2")
+        setKid(pulledKid);
       }
     }
     getKid();
@@ -112,7 +123,7 @@ function KidDetail() {
                   <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ol>
-                        {kid.contacts_list ?
+                        {kid.contacts_list > 0 ?
                           kid.contacts_list.map(
                             contact =>
                               <li align="left" key={contact.name}>
