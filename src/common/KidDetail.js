@@ -24,7 +24,6 @@ function KidDetail() {
 
   /** API call to retrieve single kid on initial render */
   useEffect(function getKidOnMount() {
-    console.log("i run once");
     async function getKid() {
       console.log("here1");
       if (token && user.students_list) {
