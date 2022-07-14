@@ -80,6 +80,11 @@ function App() {
     return covClassList;
   }
 
+  /* Submit camp form */
+  async function handleCampSubmit(formData) {
+    return true;
+  }
+
   return loaded ? (
     <div className="App">
       <BrowserRouter>
@@ -92,7 +97,8 @@ function App() {
             logout,
             handleUserUpdate,
             handleAddKid,
-            handleSchoolQuery
+            handleSchoolQuery,
+            handleCampSubmit
           }}
         >
           <Navbar />
