@@ -10,11 +10,12 @@ function Navbar() {
   function renderLinks() {
     return user ? (
       <>
-        <li className="nav-item">
-          <Link to={`/schoolqueries`} className="nav-link" href="#">
-            School Queries
-          </Link>
-        </li>
+        {user.username === "school" ?
+          <li className="nav-item">
+            <Link to={`/schoolqueries`} className="nav-link" href="#">
+              School Queries
+            </Link>
+          </li> : ""}
         <li className="nav-item">
           <Link to={`/mykids`} className="nav-link" href="#">
             {user.username === "school" ? "All Students" : "My Kids"}
