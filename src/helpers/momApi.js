@@ -118,7 +118,27 @@ class MomApi {
             id
             first_name
             last_name
+            classroom
+            birth_date
             image_url
+            contacts_list {
+              name
+              email
+              phone
+              relation
+              other
+            }
+            medical_records {
+              student_height
+              student_weight
+              covid1
+              covid2
+              flu
+              mmr
+              polio
+              tb
+              tetanus
+            }
           }
         }
       }` });

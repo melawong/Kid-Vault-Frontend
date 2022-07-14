@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import AddKidForm from "../forms/AddKidForm";
 import MomApi from "../helpers/momApi";
+import UserContext from "../userContext";
+import Home from "./Home";
 
 /** Renders detail on kid based on handle parameter. Makes API call.
  *
@@ -15,23 +17,37 @@ import MomApi from "../helpers/momApi";
  */
 
 function KidDetail() {
-
+  const { user, token } = useContext(UserContext);
+  const [kid, setKid] = useState(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const params = useParams();
-  const [kid, setKid] = useState({});
 
   /** API call to retrieve single kid on initial render */
   useEffect(function getKidOnMount() {
+    console.log("i run once");
     async function getKid() {
-      const kid = await MomApi.getKid(params.id);
-      setKid({ ...kid });
+      console.log("here1");
+      if (token && user.students_list) {
+        console.log("here2");
+        let accessibleStudentIds = new Set(
+          user.students_list.map(student => student.id));
+        console.log("here3");
+        if (accessibleStudentIds.has(+params.id)) {
+          console.log("here4");
+          const kid = await MomApi.getKid(+params.id);
+          console.log("here5 + kid", kid);
+          setKid(kid);
+        }
+      }
     }
     getKid();
-  }, [params.id]);
+    setHasLoaded(true);
+  }, []);
 
 
   /** Displays kid details */
   function renderKidDetails() {
-    if (!kid.first_name) {
+    if (!hasLoaded || !kid) {
       return <i>Loading...</i>;
     } else {
       return (
@@ -97,9 +113,19 @@ function KidDetail() {
                   <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <ol>
-                        {kid.contacts_list.length ?
+                        {kid.contacts_list ?
                           kid.contacts_list.map(
-                            contact => <li align="left"> <strong> {contact.name}</strong> <ul><li>{contact.relation}</li><li>email: {contact.email}</li><li>phone: {contact.phone}</li></ul><p></p></li>
+                            contact =>
+                              <li align="left" key={contact.name}>
+                                <strong> {contact.name}</strong>
+                                <ul><li>{contact.relation}
+                                </li>
+                                  <li>email: {contact.email}</li>
+                                  <li>phone: {contact.phone}</li>
+                                </ul>
+                                <p>
+                                </p>
+                              </li>
                           )
                           : "No Contacts Yet"
                         }
