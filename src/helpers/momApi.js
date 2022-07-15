@@ -23,9 +23,11 @@ class MomApi {
 
     try {
       let response = await axios({ data, url, method, headers })
-        .then(result => result.data.data);
-      // console.log("response", response);
-      return response;
+        .then(result => result.data);
+      if (response.errors) {
+        console.log(response.errors);
+      }
+      return response.data;
     } catch (err) {
       console.error("API Error:", err.response);
       console.log("err", err);
