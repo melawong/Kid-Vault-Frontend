@@ -206,6 +206,7 @@ class MomApi {
   }
 
   static async getCurrDataByCounty() {
+    // Currently set to Santa Clara County fips code for demo purposes.
     let response = await this.request({
       query: `{getCurrDataByCounty(fips: "06085")}`
     });
@@ -217,6 +218,39 @@ class MomApi {
       { "caseDensity": response.getCurrDataByCounty.riskLevels.caseDensity },
     ];
     return relevantData;
+  }
+
+  static async getCombinedClassCountyData(id) {
+    // Currently set to Santa Clara County fips code for demo purposes.
+    let response = await this.request({
+      query: `{getCombinedClassCountyData(id: ${id}){
+        class_data {
+          first_name
+          id
+          last_name
+          primary_contact {
+            name
+            email
+            phone
+            relation
+          }
+        }
+        county_data {
+          communityLevels {
+            cdcCommunityLevel
+          }
+          county
+          riskLevels {
+            caseDensity
+            infectionRate
+            testPositivityRatio
+          }
+          cdcTransmissionLevel
+        }
+      }
+    }`
+    });
+    return response.getCombinedClassCountyData;
   }
 }
 

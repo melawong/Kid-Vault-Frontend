@@ -80,9 +80,9 @@ function App() {
     if (chosenQuery === "Covid-Positive Student Class Contact List") {
       return await MomApi.getCovidClassroomList(id);
     } else if (chosenQuery === "Current County Data - Covid Act Now") {
-      return await MomApi.getCurrDataByCounty(id);
+      return await MomApi.getCurrDataByCounty();
     } else {
-      return [];
+      return await MomApi.getCombinedClassCountyData(id);
     }
   }
 
