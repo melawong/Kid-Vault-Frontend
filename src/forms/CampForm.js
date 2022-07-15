@@ -90,7 +90,7 @@ function CampForm() {
               aria-label="grade"
             />
 
-            Gender:
+            {/* Gender:
             <fieldset className="form-group mb-3 mt-1">
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckFemale" />
@@ -104,7 +104,7 @@ function CampForm() {
                   Male
                 </label>
               </div>
-            </fieldset>
+            </fieldset> */}
 
             Address:
             <input
@@ -173,7 +173,7 @@ function CampForm() {
               id="immunizationsArea"
               rows="7"
               defaultValue={`
-            FLU: ${kid.medical_records ? kid.medical_records.flu : ""}
+          FLU: ${kid.medical_records ? kid.medical_records.flu : ""}
           MMR:${kid.medical_records ? kid.medical_records.mmr : ""}
           POLIO: ${kid.medical_records ? kid.medical_records.polio : ""}
           TB: ${kid.medical_records ? kid.medical_records.tb : ""}

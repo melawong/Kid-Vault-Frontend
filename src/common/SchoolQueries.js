@@ -38,7 +38,7 @@ function SchoolQueries() {
         >
           <option>Covid-Positive Student Class Contact List</option>
           <option>Current County Data - Covid Act Now</option>
-          <option>Covid Class List With County Data</option>
+          {/* <option>Covid Class List With County Data</option> */}
         </select>
 
         {formData.chosenQuery !== "Current County Data - Covid Act Now" ?
@@ -57,12 +57,14 @@ function SchoolQueries() {
       </form>
       {hasSubmitted && <section id="results" className="mt-5 row">
         <div className="mx-auto col-9 bg-white">
-          <ul className="mx-auto col-6">
+          <ol className="mx-auto col-6">
+            <p></p>
 
             {formData.chosenQuery === "Covid-Positive Student Class Contact List"
               && results.length
               && results.map(
                 student =>
+                <p>
                   <li className="text-start ms-2" key={student.id}>
                     <strong>Student: </strong>{student.first_name} {student.last_name} <br />
                     <strong>Primary Contact: </strong> {student.primary_contact.name}
@@ -71,7 +73,8 @@ function SchoolQueries() {
                       <li> {student.primary_contact.email}</li>
                       <li> {student.primary_contact.phone}</li>
                     </ul>
-                  </li>)}
+                  </li>
+                </p>)}
 
             {formData.chosenQuery === "Current County Data - Covid Act Now" &&
               <>
@@ -82,7 +85,7 @@ function SchoolQueries() {
                 <li>Case Density: {results[4].caseDensity}</li>
               </>
             }
-          </ul>
+          </ol>
         </div>
       </section >}
     </div >);

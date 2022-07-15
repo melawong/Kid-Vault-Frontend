@@ -151,14 +151,14 @@ function KidDetail() {
                   </h2>
                   <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div className="accordion-body text-start">
-                      <p><a href={`/forms/school/${kid.id}`}>School</a></p>
+                      {/* <p><a href={`/forms/school/${kid.id}`}>School</a></p> */}
                       <p>
                         <Link to={`/mykids/${params.id}/camp`}
                           state={{ from: "KidDetail", kid: kid }} className="nav-link" href="#">
                           Camp
                         </Link>
                       </p>
-                      <p><a href={`/forms/medical/${kid.id}`}>Medical</a></p>
+                      {/* <p><a href={`/forms/medical/${kid.id}`}>Medical</a></p> */}
                     </div>
                   </div>
                 </div>
