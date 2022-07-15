@@ -8,7 +8,7 @@ function SchoolQueries() {
     chosenQuery: "Covid Positive Student Contact List",
     id: ""
   });
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -52,7 +52,7 @@ function SchoolQueries() {
       <section id="results" className="mt-5">
 
         <ol className="text-start">
-          {results.map(
+          {Array.isArray(results) && results.map(
             student =>
               <li>
                 <strong>Student: </strong>{student.first_name} {student.last_name} <br />

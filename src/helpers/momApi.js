@@ -23,7 +23,8 @@ class MomApi {
 
     try {
       let response = await axios({ data, url, method, headers })
-        .then(result => result.data.data);
+        .then(result => result);
+      console.log("response", response);
       return response;
     } catch (err) {
       console.error("API Error:", err.response);
@@ -184,9 +185,9 @@ class MomApi {
     return response.insertStudent;
   }
 
-  static async getCovidList(id) {
+  static async getCovidClassroomList(id) {
     let response = await this.request({
-      query: `{getCovidList(id: ${+id}) {
+      query: `{getCovidClassroomList(id: ${+id}) {
         first_name
         last_name
         id
@@ -199,7 +200,7 @@ class MomApi {
       }
     }`
     });
-    return response.getCovidList;
+    return response.getCovidClassroomList;
   }
 }
 
