@@ -5,7 +5,7 @@ function SchoolQueries() {
   const { handleSchoolQuery } = useContext(UserContext);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    chosenQuery: "Covid Positive Student Contact List",
+    chosenQuery: "Covid-Positive Student Class Contact List",
     id: ""
   });
   const [results, setResults] = useState(null);
@@ -28,14 +28,6 @@ function SchoolQueries() {
     <div className="row">
       <form className="SchoolQueriesForm mx-auto col-6" onSubmit={handleSubmit}>
         <label htmlFor="chosenQuery" className="form-label mt-4">Choose A Query</label>
-        <input
-          id="id"
-          name="id"
-          className="form-control mt-3"
-          placeholder="Enter student id"
-          onChange={handleChange}
-          value={formData["id"]}
-        />
         <select
           onChange={handleChange}
           className="form-select mt-2 mb-2"
@@ -43,10 +35,23 @@ function SchoolQueries() {
           value={formData.chosenQuery}
           name="chosenQuery"
         >
-          <option>Covid Positive Student Contact List</option>
-          <option>Covid Act Now </option>
-          <option>3</option>
+          <option>Covid-Positive Student Class Contact List</option>
+          <option>Current County Data - Covid Act Now</option>
+          <option>Covid Class List With County Data</option>
         </select>
+
+        {formData.chosenQuery !== "Current County Data - Covid Act Now" ?
+          <input
+            id="id"
+            name="id"
+            className="form-control mt-3"
+            placeholder="Enter student id"
+            onChange={handleChange}
+            value={formData["id"]}
+          />
+          :
+          ""
+        }
         <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
       </form>
       <section id="results" className="mt-5">
