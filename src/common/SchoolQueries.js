@@ -8,7 +8,7 @@ function SchoolQueries() {
     chosenQuery: "Covid-Positive Student Class Contact List",
     id: ""
   });
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState([]);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -20,8 +20,10 @@ function SchoolQueries() {
   async function handleSubmit(evt) {
     evt.preventDefault();
     const queryResults = await handleSchoolQuery(formData);
+    console.log("qresults", queryResults);
     setResults(queryResults);
     setHasSubmitted(true);
+    console.log("results", results);
   }
 
   return (
@@ -55,20 +57,34 @@ function SchoolQueries() {
         <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
       </form>
       <section id="results" className="mt-5">
-        <div className="row">
-          <ol className="mx-auto col-6 bg-white">
-            {Array.isArray(results) && results.map(
-              student =>
-                <li className="text-start ms-2">
-                  <strong>Student: </strong>{student.first_name} {student.last_name} <br />
-                  <strong>Primary Contact: </strong> {student.primary_contact.name}
-                  <ul>
-                    <li> {student.primary_contact.relation}</li>
-                    <li> {student.primary_contact.email}</li>
-                    <li> {student.primary_contact.phone}</li>
-                  </ul>
-                </li>)}
-          </ol>
+        <div className="row bg-white">
+          <ul className="mx-auto col-6">
+
+            {hasSubmitted
+              && formData.chosenQuery === "Covid-Positive Student Class Contact List"
+              && results.length
+              && results.map(
+                student =>
+                  <li className="text-start ms-2" key={student.id}>
+                    <strong>Student: </strong>{student.first_name} {student.last_name} <br />
+                    <strong>Primary Contact: </strong> {student.primary_contact.name}
+                    <ul>
+                      <li> {student.primary_contact.relation}</li>
+                      <li> {student.primary_contact.email}</li>
+                      <li> {student.primary_contact.phone}</li>
+                    </ul>
+                  </li>)}
+
+            {hasSubmitted && formData.chosenQuery === "Current County Data - Covid Act Now" &&
+              <>
+                <strong>{results[1]["county"]} Current COVID Stats</strong>
+                <li>CDC Transmission Level: {results[0].cdcTransmissionLevel}</li>
+                <li>Test Positivity Ratio: {results[2].testPositivityRatio}</li>
+                <li>Infection Rate: {results[3].infectionRate}</li>
+                <li>Case Density: {results[4].caseDensity}</li>
+              </>
+            }
+          </ul>
         </div>
       </section >
     </div >);

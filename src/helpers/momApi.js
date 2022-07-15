@@ -202,6 +202,20 @@ class MomApi {
     });
     return response.getCovidClassroomList;
   }
+
+  static async getCurrDataByCounty() {
+    let response = await this.request({
+      query: `{getCurrDataByCounty(fips: "06085")}`
+    });
+    let relevantData = [
+      { "cdcTransmissionLevel": response.getCurrDataByCounty.cdcTransmissionLevel },
+      { "county": response.getCurrDataByCounty.county },
+      { "testPositivityRatio": response.getCurrDataByCounty.riskLevels.testPositivityRatio },
+      { "infectionRate": response.getCurrDataByCounty.riskLevels.infectionRate },
+      { "caseDensity": response.getCurrDataByCounty.riskLevels.caseDensity },
+    ];
+    return relevantData;
+  }
 }
 
 export default MomApi;

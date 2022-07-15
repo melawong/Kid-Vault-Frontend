@@ -76,8 +76,14 @@ function App() {
 
   /* Run covid query for school use */
   async function handleSchoolQuery(formData) {
-    const covClassList = await MomApi.getCovidClassroomList(formData.id);
-    return covClassList;
+    const { id, chosenQuery } = formData;
+    if (chosenQuery === "Covid-Positive Student Class Contact List") {
+      return await MomApi.getCovidClassroomList(id);
+    } else if (chosenQuery === "Current County Data - Covid Act Now") {
+      return await MomApi.getCurrDataByCounty(id);
+    } else {
+      return [];
+    }
   }
 
   /* Submit camp form */
