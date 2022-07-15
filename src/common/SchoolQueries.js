@@ -55,23 +55,23 @@ function SchoolQueries() {
         <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
       </form>
       <section id="results" className="mt-5">
-
-        <ol className="text-start">
-          {Array.isArray(results) && results.map(
-            student =>
-              <li>
-                <strong>Student: </strong>{student.first_name} {student.last_name} <br />
-                <strong>Primary Contact: </strong> {student.primary_contact.name}
-                <ul>
-                  <li> {student.primary_contact.relation}</li>
-                  <li> {student.primary_contact.email}</li>
-                  <li> {student.primary_contact.phone}</li>
-                </ul>
-              </li>)}
-        </ol>
-
-      </section>
-    </div>);
+        <div className="row">
+          <ol className="mx-auto col-6 bg-white">
+            {Array.isArray(results) && results.map(
+              student =>
+                <li className="text-start ms-2">
+                  <strong>Student: </strong>{student.first_name} {student.last_name} <br />
+                  <strong>Primary Contact: </strong> {student.primary_contact.name}
+                  <ul>
+                    <li> {student.primary_contact.relation}</li>
+                    <li> {student.primary_contact.email}</li>
+                    <li> {student.primary_contact.phone}</li>
+                  </ul>
+                </li>)}
+          </ol>
+        </div>
+      </section >
+    </div >);
 }
 
 export default SchoolQueries;
