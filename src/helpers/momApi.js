@@ -43,7 +43,7 @@ class MomApi {
     const { first_name, last_name, username, password, email, phone } = formData;
     let response = await this.request({
       query: `mutation {
-      addUser(
+      signupUser(
         first_name: "${first_name}",
         last_name: "${last_name}",
         username: "${username}",
