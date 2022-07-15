@@ -56,12 +56,11 @@ function SchoolQueries() {
         }
         <button className="btn btn-info w-25 mx-auto mt-3">Run</button>
       </form>
-      <section id="results" className="mt-5">
-        <div className="row bg-white">
+      {hasSubmitted && <section id="results" className="mt-5 row">
+        <div className="mx-auto col-9 bg-white">
           <ul className="mx-auto col-6">
 
-            {hasSubmitted
-              && formData.chosenQuery === "Covid-Positive Student Class Contact List"
+            {formData.chosenQuery === "Covid-Positive Student Class Contact List"
               && results.length
               && results.map(
                 student =>
@@ -75,7 +74,7 @@ function SchoolQueries() {
                     </ul>
                   </li>)}
 
-            {hasSubmitted && formData.chosenQuery === "Current County Data - Covid Act Now" &&
+            {formData.chosenQuery === "Current County Data - Covid Act Now" &&
               <>
                 <strong>{results[1]["county"]} Current COVID Stats</strong>
                 <li>CDC Transmission Level: {results[0].cdcTransmissionLevel}</li>
@@ -86,7 +85,7 @@ function SchoolQueries() {
             }
           </ul>
         </div>
-      </section >
+      </section >}
     </div >);
 }
 
