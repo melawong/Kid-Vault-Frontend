@@ -60,7 +60,7 @@ function SchoolQueries() {
           {formData.chosenQuery === "Covid-Positive Student Class Contact List"
             && results.length
             && <>
-            <h3 className="mt-3"> Covid Close Contact List </h3>
+            <h5 className="mt-3"> Covid Close Contact List </h5>
             <p>
             <ol className="mx-auto col-6">
               {results.map(
@@ -88,7 +88,7 @@ function SchoolQueries() {
 
           {formData.chosenQuery === "Current County Data - Covid Act Now" &&
             <ol className="mx-auto col-6">
-              <strong>{results.county} Current COVID Stats</strong>
+              <h5 className="mt-3">Current COVID Stats {results.county}</h5>
               <li>CDC Transmission Level: {results.cdcTransmissionLevel}</li>
               <li>Test Positivity Ratio: {results.riskLevels.testPositivityRatio}</li>
               <li>Infection Rate: {results.riskLevels.infectionRate}</li>
@@ -99,7 +99,7 @@ function SchoolQueries() {
           {formData.chosenQuery === "Combined Class List And County Data" &&
             <div className="row">
               <div className="col-6">
-                <h3 className="mt-3"> Covid Close Contact List </h3>
+                <h5 className="mt-3"> Close Contact List </h5>
                 <ol className="mx-auto">
                   {results.class_data.map(
                     student =>
@@ -122,7 +122,7 @@ function SchoolQueries() {
                 </ol>
               </div>
               <div className="col-6">
-                <h3 className="mt-3">{results.county_data.county} Current COVID Stats</h3>
+                <h5 className="mt-3">Current COVID Stats {results.county_data.county}</h5>
                 <ol>
                   <li>CDC Transmission Level: {results.county_data.cdcTransmissionLevel}</li>
                   <li>CDC Community Level: {results.county_data.communityLevels.cdcCommunityLevel}</li>
