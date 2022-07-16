@@ -90,9 +90,9 @@ function SchoolQueries() {
             <ol className="mx-auto col-6">
               <strong>{results.county} Current COVID Stats</strong>
               <li>CDC Transmission Level: {results.cdcTransmissionLevel}</li>
-              <li>Test Positivity Ratio: {results.testPositivityRatio}</li>
-              <li>Infection Rate: {results.infectionRate}</li>
-              <li>Case Density: {results.caseDensity}</li>
+              <li>Test Positivity Ratio: {results.riskLevels.testPositivityRatio}</li>
+              <li>Infection Rate: {results.riskLevels.infectionRate}</li>
+              <li>Case Density: {results.riskLevels.caseDensity}</li>
             </ol>
           }
 
