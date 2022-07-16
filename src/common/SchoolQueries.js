@@ -59,10 +59,14 @@ function SchoolQueries() {
 
           {formData.chosenQuery === "Covid-Positive Student Class Contact List"
             && results.length
-            &&
+            && <>
+            <h3 className="mt-3"> Covid Close Contact List </h3>
+            <p>
             <ol className="mx-auto col-6">
               {results.map(
                 student =>
+                  <p>
+                  <p></p>
                   <li className="text-start ms-2" key={student.id}>
                     <strong>Student: </strong>{student.first_name} {student.last_name} <br />
                     {student.primary_contact ?
@@ -78,8 +82,9 @@ function SchoolQueries() {
                       )
                       : "No Guardian Contact Found"}
                   </li>
+                  </p>
               )}
-            </ol>}
+            </ol></p></>}
 
           {formData.chosenQuery === "Current County Data - Covid Act Now" &&
             <ol className="mx-auto col-6">
@@ -94,7 +99,7 @@ function SchoolQueries() {
           {formData.chosenQuery === "Combined Class List And County Data" &&
             <div className="row">
               <div className="col-6">
-                <h3> Contact List </h3>
+                <h3 className="mt-3"> Covid Close Contact List </h3>
                 <ol className="mx-auto">
                   {results.class_data.map(
                     student =>
@@ -117,7 +122,7 @@ function SchoolQueries() {
                 </ol>
               </div>
               <div className="col-6">
-                <h3>{results.county_data.county} Current COVID Stats</h3>
+                <h3 className="mt-3">{results.county_data.county} Current COVID Stats</h3>
                 <ol>
                   <li>CDC Transmission Level: {results.county_data.cdcTransmissionLevel}</li>
                   <li>CDC Community Level: {results.county_data.communityLevels.cdcCommunityLevel}</li>

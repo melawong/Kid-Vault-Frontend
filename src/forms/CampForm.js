@@ -267,8 +267,7 @@ function CampForm() {
               name="immunizations"
               id="immunizationsArea"
               rows="5"
-              defaultValue={`
-          None`}
+              defaultValue={""}
             >
             </textarea>
           </div>
