@@ -19,6 +19,8 @@ function CampForm() {
       guardianEmail: "",
       guardianPhone: "",
       guardianAltPhone: "",
+      contactName: "",
+      contactPhone: "",
       immunizations: ""
     });
 
@@ -52,12 +54,12 @@ function CampForm() {
     <form className="CampForm bg-white col-10 mx-auto" onSubmit={handleSubmit}>
       <fieldset disabled={hasSubmitted ? "disabled" : ""}>
         <h2 className="mt-2 mb-3 mx-auto col-10"> Summer Camp Registration </h2>
-        <h5 className="mt-1"><strong>Athlete Information</strong></h5>
+        <h5 className="mt-1"><strong>Camper Information</strong></h5>
 
         <div className="mb-3 mt-3">
 
           <div className="form-group mb-5">
-            Athlete's Name
+            Camper's Name
             <input
               id="fullname"
               name="fullname"
@@ -90,7 +92,7 @@ function CampForm() {
               aria-label="grade"
             />
 
-            Gender:
+            {/* Gender:
             <fieldset className="form-group mb-3 mt-1">
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckFemale" />
@@ -104,7 +106,7 @@ function CampForm() {
                   Male
                 </label>
               </div>
-            </fieldset>
+            </fieldset> */}
 
             Address:
             <input
@@ -131,6 +133,7 @@ function CampForm() {
               value={kid.guardian ? kid.guardian.name : ""}
               aria-label="guardianName"
             />
+
             <label htmlFor="immunizationsArea" className="form-label mt-3">Email: </label>
             <input
               id="guardianEmail"
@@ -141,6 +144,7 @@ function CampForm() {
               value={kid.guardian ? kid.guardian.email : ""}
               aria-label="guardianEmail"
             />
+
             <label htmlFor="immunizationsArea" className="form-label mt-3"> Primary Phone: </label>
             <input
               id="guardianPhone"
@@ -164,6 +168,78 @@ function CampForm() {
             />
           </div>
 
+          <h5><strong>Emergency Contact Information</strong></h5>
+
+          <div className="form-group mb-5">
+            <label htmlFor="immunizationsArea" className="form-label mt-3">Full Name: </label>
+            <input
+              id="contactName"
+              name="contactName"
+              className="form-control"
+              placeholder="full name"
+              onChange={handleChange}
+              value={kid.contacts_list[1] ? kid.contacts_list[1].name : ""}
+              aria-label="contactName"
+            />
+
+            <label htmlFor="immunizationsArea" className="form-label mt-3"> Primary Phone: </label>
+            <input
+              id="contactPhone"
+              name="contactPhone"
+              className="form-control"
+              placeholder="phone number"
+              onChange={handleChange}
+              value={kid.contacts_list[1] ? kid.contacts_list[1].phone : ""}
+              aria-label="contactPhone"
+            />
+
+            <label htmlFor="immunizationsArea" className="form-label mt-3">Relationship to Camper: </label>
+            <input
+              id="contactName"
+              name="contactName"
+              className="form-control"
+              placeholder="full name"
+              onChange={handleChange}
+              value={kid.contacts_list[1] ? kid.contacts_list[1].relation : ""}
+              aria-label="contactName"
+            />
+          </div>
+
+          <div className="form-group mb-5">
+            <label htmlFor="immunizationsArea" className="form-label mt-3">Full Name: </label>
+            <input
+              id="contactName"
+              name="contactName"
+              className="form-control"
+              placeholder="full name"
+              onChange={handleChange}
+              value={kid.contacts_list[2] ? kid.contacts_list[2].name : ""}
+              aria-label="contactName"
+            />
+
+            <label htmlFor="immunizationsArea" className="form-label mt-3"> Primary Phone: </label>
+            <input
+              id="contactPhone"
+              name="contactPhone"
+              className="form-control"
+              placeholder="phone number"
+              onChange={handleChange}
+              value={kid.contacts_list[2] ? kid.contacts_list[2].phone : ""}
+              aria-label="contactPhone"
+            />
+            
+            <label htmlFor="immunizationsArea" className="form-label mt-3">Relationship to Camper: </label>
+            <input
+              id="contactName"
+              name="contactName"
+              className="form-control"
+              placeholder="full name"
+              onChange={handleChange}
+              value={kid.contacts_list[2] ? kid.contacts_list[2].relation : ""}
+              aria-label="contactName"
+            />
+          </div>
+
           <h5><strong>Medical Information</strong></h5>
           <div className="form-group">
             <label htmlFor="immunizationsArea" className="form-label mt-3">Immunizations</label>
@@ -171,7 +247,7 @@ function CampForm() {
               className="form-control"
               name="immunizations"
               id="immunizationsArea"
-              rows="7"
+              rows="10"
               defaultValue={`
           FLU: ${kid.medical_records ? kid.medical_records.flu : ""}
           MMR:${kid.medical_records ? kid.medical_records.mmr : ""}
@@ -183,6 +259,20 @@ function CampForm() {
             >
             </textarea>
           </div>
+
+          <div className="form-group">
+            <label htmlFor="immunizationsArea" className="form-label mt-3">Allergies</label>
+            <textarea
+              className="form-control"
+              name="immunizations"
+              id="immunizationsArea"
+              rows="5"
+              defaultValue={`
+          None`}
+            >
+            </textarea>
+          </div>
+
           {renderFlashMessage()}
           <button className="btn btn-info mt-3">Save</button>
         </div>
