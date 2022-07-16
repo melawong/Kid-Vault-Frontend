@@ -22,7 +22,6 @@ function SchoolQueries() {
     evt.preventDefault();
     const queryResults = await handleSchoolQuery(formData);
     setResults(queryResults);
-    console.log("queryresults", queryResults);
     setHasSubmitted(true);
   }
 
