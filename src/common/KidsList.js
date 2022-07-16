@@ -1,7 +1,8 @@
 import KidCard from "./KidCard";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../userContext";
-import MomApi from "../helpers/momApi";
+import MomApi from "../helpers/MomApi";
+import Loading from "../helpers/Loading";
 
 function KidsList() {
   const { user } = useContext(UserContext);
@@ -17,21 +18,23 @@ function KidsList() {
         const userKids = user.students_list;
         setKids(userKids);
       }
-      setHasLoaded(true);
+      setHasLoaded(false);
     }
     getKids();
   }, []);
 
+  if (!kids) return <Loading />;
+
   return hasLoaded ? (
     <div className="row display-flex flex-wrap justify-content-center mt-3">
-      {kids.length ? kids.map(kid =>
+      {kids && kids.length ? kids.map(kid =>
         <div key={kid.id} className="col-2 ms-2 my-2">
           <KidCard key={kid.id} kid={kid} />
         </div>) : "No Kids Yet!"}
     </div>
   )
     :
-    <p> Loading... </p>;
+    <Loading />;
 }
 
 export default KidsList;

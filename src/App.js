@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import MomApi from "./helpers/momApi";
+import MomApi from "./helpers/MomApi";
 import Navbar from "./navigation/Navbar";
+import Loading from "./helpers/Loading";
 import RoutesList from "./navigation/RoutesList";
 import UserContext from "./userContext";
 import jwtDecode from "jwt-decode";
@@ -13,7 +14,7 @@ const TOKEN_NAME = "parentToken";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loaded, setLoaded] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [token, setToken] = useState(localStorage.getItem(TOKEN_NAME));
 
   useEffect(
@@ -25,7 +26,7 @@ function App() {
           const userInfo = await MomApi.getUser(username);
           setUser({ ...userInfo, });
         }
-        setLoaded(true);
+        setHasLoaded(true);
       }
       getUser();
     },
@@ -101,7 +102,7 @@ function App() {
     return true;
   }
 
-  return loaded ? (
+  return hasLoaded ? (
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider
@@ -123,7 +124,7 @@ function App() {
       </BrowserRouter>
     </div>
   ) : (
-    <p>Loading...</p>
+    <Loading />
   );
 }
 

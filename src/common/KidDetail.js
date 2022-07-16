@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import MomApi from "../helpers/momApi";
+import MomApi from "../helpers/MomApi";
 import UserContext from "../userContext";
 import { Link } from "react-router-dom";
+import Loading from "../helpers/Loading";
 
 /** Renders detail on kid based on handle parameter. Makes API call.
  *
@@ -57,7 +58,7 @@ function KidDetail() {
   /** Displays kid details */
   function renderKidDetails() {
     if (!hasLoaded || !kid) {
-      return <i>Loading...</i>;
+      return <Loading />;
     } else {
       return (
         <>

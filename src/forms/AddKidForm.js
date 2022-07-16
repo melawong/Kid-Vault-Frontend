@@ -11,7 +11,7 @@ import FlashMessage from "../common/FlashMessage";
 
 function AddKidForm() {
 
-  const { user, handleAddKid } = useContext(UserContext);
+  const { handleAddKid } = useContext(UserContext);
   const initialState = { first_name: "", last_name: "", birth_date: "", classroom: "" };
   const [formData, setFormData] = useState(initialState);
   const [hasSubmitted, setHasSubmitted] = useState(false);

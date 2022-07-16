@@ -4,8 +4,8 @@ import FlashMessage from "../common/FlashMessage";
 import { useLocation } from "react-router-dom";
 
 function CampForm() {
-  const { handleCampSubmit } = useContext(UserContext);
   const location = useLocation();
+  const { handleCampSubmit } = useContext(UserContext);
   const { kid } = location.state;
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [formData, setFormData] = useState(
@@ -227,7 +227,7 @@ function CampForm() {
               value={kid.contacts_list[2] ? kid.contacts_list[2].phone : ""}
               aria-label="contactPhone"
             />
-            
+
             <label htmlFor="immunizationsArea" className="form-label mt-3">Relationship to Camper: </label>
             <input
               id="contactName"
