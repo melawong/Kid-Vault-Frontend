@@ -231,16 +231,21 @@ class MomApi {
   static async getCurrDataByCounty() {
     // Currently set to Santa Clara County fips code for demo purposes.
     let response = await this.request({
-      query: `{getCurrDataByCounty(fips: "06085")}`
+      query: `{getCurrDataByCounty(fips: "06085"){
+          communityLevels {
+            cdcCommunityLevel
+          }
+          county
+          riskLevels {
+            caseDensity
+            infectionRate
+            testPositivityRatio
+          }
+          cdcTransmissionLevel
+        }
+    }`
     });
-    let relevantData = [
-      { "cdcTransmissionLevel": response.getCurrDataByCounty.cdcTransmissionLevel },
-      { "county": response.getCurrDataByCounty.county },
-      { "testPositivityRatio": response.getCurrDataByCounty.riskLevels.testPositivityRatio },
-      { "infectionRate": response.getCurrDataByCounty.riskLevels.infectionRate },
-      { "caseDensity": response.getCurrDataByCounty.riskLevels.caseDensity },
-    ];
-    return relevantData;
+    return response.getCurrDataByCounty;
   }
 
   static async getCombinedClassCountyData(id) {
