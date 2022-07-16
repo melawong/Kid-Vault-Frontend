@@ -22,6 +22,7 @@ function SchoolQueries() {
     evt.preventDefault();
     const queryResults = await handleSchoolQuery(formData);
     setResults(queryResults);
+    console.log("queryresults", queryResults);
     setHasSubmitted(true);
   }
 
@@ -105,9 +106,10 @@ function SchoolQueries() {
                 <h3>{results.county_data.county} Current COVID Stats</h3>
                 <ol>
                   <li>CDC Transmission Level: {results.county_data.cdcTransmissionLevel}</li>
-                  <li>Test Positivity Ratio: {results.county_data.testPositivityRatio}</li>
-                  <li>Infection Rate: {results.county_data.infectionRate}</li>
-                  <li>Case Density: {results.county_data.caseDensity}</li>
+                  <li>CDC Community Level: {results.county_data.communityLevels.cdcCommunityLevel}</li>
+                  <li>Test Positivity Ratio: {results.county_data.riskLevels.testPositivityRatio}</li>
+                  <li>Infection Rate: {results.county_data.riskLevels.infectionRate}</li>
+                  <li>Case Density: {results.county_data.riskLevels.caseDensity}</li>
                 </ol>
               </div>
             </div>
