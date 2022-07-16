@@ -35,20 +35,20 @@ function App() {
   /** Make API call to log in user */
   async function handleLogin(formData) {
     const userToken = await MomApi.login(formData);
-    setToken(userToken);
-    localStorage.setItem(TOKEN_NAME, userToken);
+    if (userToken !== "Incorrect Username Or Password") {
+      setToken(userToken);
+      localStorage.setItem(TOKEN_NAME, userToken);
+      return true;
+    }
+    return false;
   }
 
   /** Make API call to sign up user */
   async function handleSignup(formData) {
     const newUserToken = await MomApi.signUp(formData);
-    console.log("token before if...", newUserToken);
     if (newUserToken !== "Username or Email already Exists!") {
-      console.log("got here");
       setToken(newUserToken);
       localStorage.setItem(TOKEN_NAME, newUserToken);
-      console.log("token should be set");
-      console.log(newUserToken);
       return true;
     }
     return false;
@@ -77,7 +77,9 @@ function App() {
   /* Add a student to the database */
   async function handleAddKid(kid) {
     const newKid = await MomApi.addKid(kid);
-
+    if (user.username !== "school") {
+      await MomApi.insertGuardianChild(newKid.id, user.username);
+    }
     setUser((user) => ({ ...user }));
     return newKid;
   }

@@ -39,6 +39,7 @@ function SignupForm() {
     }
   }
 
+  /** Renders a flash message to the user. */
   function renderFlashMessage() {
     return signupFailed ? (
       <FlashMessage message="Username Or Email Already Exists!" alertStatus="success" />

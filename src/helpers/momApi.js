@@ -54,7 +54,7 @@ class MomApi {
       }`
     });
     if (!response.signupUser) {
-      return "Username or Email already Exists!";
+      return "Username or Email already Exists";
     };
     return response.signupUser.token;
   }
@@ -69,6 +69,9 @@ class MomApi {
           password: "${password}"
           )}`
     });
+    if (!response.loginUser) {
+      return "Incorrect Username Or Password";
+    };
     return response.loginUser.token;
   }
 
@@ -186,9 +189,25 @@ class MomApi {
           birth_date: "${birth_date}",
           classroom: "${classroom}",
           image_url: ""
-      )}`
+          ) {
+            id
+          }
+        }
+      `
     });
     return response.insertStudent;
+  }
+
+  static async insertGuardianChild(id, username) {
+    let response = await this.request({
+      query: `mutation {
+        insertGuardianChild(
+          child_id: ${+id},
+          guardian_username: "${username}",
+          )
+        }`
+    });
+    return response.insertGuardianChild;
   }
 
   static async getCovidClassroomList(id) {
