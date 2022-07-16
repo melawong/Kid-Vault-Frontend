@@ -65,12 +65,18 @@ function SchoolQueries() {
                 student =>
                   <li className="text-start ms-2" key={student.id}>
                     <strong>Student: </strong>{student.first_name} {student.last_name} <br />
-                    <strong>Primary Contact: </strong> {student.primary_contact.name}
-                    <ul>
-                      <li> {student.primary_contact.relation}</li>
-                      <li> {student.primary_contact.email}</li>
-                      <li> {student.primary_contact.phone}</li>
-                    </ul>
+                    {student.primary_contact ?
+                      (
+                        <>
+                          <strong>Primary Contact: </strong> {student.primary_contact.name}
+                          <ul>
+                            <li> {student.primary_contact.relation}</li>
+                            <li> {student.primary_contact.email}</li>
+                            <li> {student.primary_contact.phone}</li>
+                          </ul>
+                        </>
+                      )
+                      : "No Guardian Contact Found"}
                   </li>
               )}
             </ol>}
