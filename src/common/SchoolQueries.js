@@ -88,11 +88,11 @@ function SchoolQueries() {
 
           {formData.chosenQuery === "Current County Data - Covid Act Now" &&
             <ol className="mx-auto col-6">
-              <strong>{results[1]["county"]} Current COVID Stats</strong>
-              <li>CDC Transmission Level: {results[0].cdcTransmissionLevel}</li>
-              <li>Test Positivity Ratio: {results[2].testPositivityRatio}</li>
-              <li>Infection Rate: {results[3].infectionRate}</li>
-              <li>Case Density: {results[4].caseDensity}</li>
+              <strong>{results.county} Current COVID Stats</strong>
+              <li>CDC Transmission Level: {results.cdcTransmissionLevel}</li>
+              <li>Test Positivity Ratio: {results.testPositivityRatio}</li>
+              <li>Infection Rate: {results.infectionRate}</li>
+              <li>Case Density: {results.caseDensity}</li>
             </ol>
           }
 
