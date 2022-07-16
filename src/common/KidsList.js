@@ -24,10 +24,10 @@ function KidsList() {
 
   return hasLoaded ? (
     <div className="row display-flex flex-wrap justify-content-center mt-3">
-      {kids.map(kid =>
+      {kids.length ? kids.map(kid =>
         <div key={kid.id} className="col-2 ms-2 my-2">
           <KidCard key={kid.id} kid={kid} />
-        </div>)}
+        </div>) : "No Kids Yet!"}
     </div>
   )
     :
