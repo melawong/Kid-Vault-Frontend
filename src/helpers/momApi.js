@@ -50,7 +50,8 @@ class MomApi {
         password: "${password}",
         email: "${email}",
         phone: "${phone}"
-        )}`
+        )
+      }`
     });
     return response.signupUser.token;
   }
