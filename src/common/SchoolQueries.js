@@ -59,9 +59,10 @@ function SchoolQueries() {
 
           {formData.chosenQuery === "Covid-Positive Student Class Contact List"
             && results.length
-            && results.map(
-              student =>
-                <ol className="mx-auto col-6">
+            &&
+            <ol className="mx-auto col-6">
+              {results.map(
+                student =>
                   <li className="text-start ms-2" key={student.id}>
                     <strong>Student: </strong>{student.first_name} {student.last_name} <br />
                     <strong>Primary Contact: </strong> {student.primary_contact.name}
@@ -71,7 +72,8 @@ function SchoolQueries() {
                       <li> {student.primary_contact.phone}</li>
                     </ul>
                   </li>
-                </ol>)}
+              )}
+            </ol>}
 
           {formData.chosenQuery === "Current County Data - Covid Act Now" &&
             <ol className="mx-auto col-6">
@@ -87,7 +89,7 @@ function SchoolQueries() {
             <div className="row">
               <div className="col-6">
                 <h3> Contact List </h3>
-                <ol className="mx-auto col-6">
+                <ol className="mx-auto">
                   {results.class_data.map(
                     student =>
                       <li className="text-start ms-2" key={student.id}>
