@@ -18,7 +18,7 @@ function KidsList() {
         const userKids = user.students_list;
         setKids(userKids);
       }
-      setHasLoaded(false);
+      setHasLoaded(true);
     }
     getKids();
   }, []);

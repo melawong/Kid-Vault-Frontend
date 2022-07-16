@@ -14,7 +14,7 @@ function SchoolQueries() {
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    setHasSubmitted(true);
+    setHasSubmitted(false);
   }
 
   /** Call parent function and clear form. */
