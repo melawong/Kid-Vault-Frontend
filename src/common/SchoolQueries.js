@@ -38,7 +38,7 @@ function SchoolQueries() {
         >
           <option>Covid-Positive Student Class Contact List</option>
           <option>Current County Data - Covid Act Now</option>
-          {/* <option>Covid Class List With County Data</option> */}
+          <option>Combined Class List And County Data</option>
         </select>
 
         {formData.chosenQuery !== "Current County Data - Covid Act Now" ?
