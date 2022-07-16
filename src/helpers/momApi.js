@@ -246,7 +246,7 @@ class MomApi {
   static async getCombinedClassCountyData(id) {
     // Currently set to Santa Clara County fips code for demo purposes.
     let response = await this.request({
-      query: `{getCombinedClassCountyData(id: ${id}){
+      query: `{getCombinedClassCountyData(id: ${id} fips: "06085"){
         class_data {
           first_name
           id
