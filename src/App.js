@@ -77,7 +77,9 @@ function App() {
   /* Add a student to the database */
   async function handleAddKid(kid) {
     const newKid = await MomApi.addKid(kid);
-
+    if(user.username !== "school"){
+      await MomApi.insertGuardianChild(newKid.id, user.username)
+    }
     setUser((user) => ({ ...user }));
     return newKid;
   }
