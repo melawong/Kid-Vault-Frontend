@@ -90,7 +90,7 @@ function CampForm() {
               aria-label="grade"
             />
 
-            {/* Gender:
+            Gender:
             <fieldset className="form-group mb-3 mt-1">
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckFemale" />
@@ -104,7 +104,7 @@ function CampForm() {
                   Male
                 </label>
               </div>
-            </fieldset> */}
+            </fieldset>
 
             Address:
             <input

@@ -25,7 +25,7 @@ class MomApi {
       let response = await axios({ data, url, method, headers })
         .then(result => result.data);
       if (response.errors) {
-        console.log(response.errors);
+        console.log("response errors", response.errors);
       }
       return response.data;
     } catch (err) {
@@ -53,6 +53,9 @@ class MomApi {
         )
       }`
     });
+    if (!response.signupUser) {
+      return "Username or Email already Exists!";
+    };
     return response.signupUser.token;
   }
 

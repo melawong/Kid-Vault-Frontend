@@ -42,8 +42,16 @@ function App() {
   /** Make API call to sign up user */
   async function handleSignup(formData) {
     const newUserToken = await MomApi.signUp(formData);
-    setToken(newUserToken);
-    localStorage.setItem(TOKEN_NAME, newUserToken);
+    console.log("token before if...", newUserToken);
+    if (newUserToken !== "Username or Email already Exists!") {
+      console.log("got here");
+      setToken(newUserToken);
+      localStorage.setItem(TOKEN_NAME, newUserToken);
+      console.log("token should be set");
+      console.log(newUserToken);
+      return true;
+    }
+    return false;
   }
 
   /** Log user out, reset states and local storage */

@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import UserContext from "../userContext";
+import FlashMessage from "../common/FlashMessage";
 
 /** Signup form component
  *
@@ -19,18 +20,31 @@ function SignupForm() {
   };
   const { handleSignup } = useContext(UserContext);
   const [formData, setFormData] = useState(initialState);
+  const [signupFailed, setSignupFailed] = useState(false);
 
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setSignupFailed(false);
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    handleSignup(formData);
+    const userSignedUp = await handleSignup(formData);
     setFormData(initialState);
+    if (!userSignedUp) {
+      setSignupFailed(true);
+    }
+  }
+
+  function renderFlashMessage() {
+    return signupFailed ? (
+      <FlashMessage message="Username Or Email Already Exists!" alertStatus="success" />
+    ) : (
+      ""
+    );
   }
 
   /** Create form fields  */
@@ -55,6 +69,7 @@ function SignupForm() {
   return (
     <form className="SignupForm" onSubmit={handleSubmit}>
       <h2 className="mt-2">Sign Up</h2>
+      {renderFlashMessage()}
       <div className="mt-3">
         {renderFormFields()}
         <button className="btn btn-info mt-3">Submit!</button>
