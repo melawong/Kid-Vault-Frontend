@@ -48,7 +48,7 @@ Find `YOUR_STEPZEN_API_BASE_URL_HERE` in the terminal in project root directory 
 $ stepzen start
 ```
 
-2. Run React:
+2. Run the app itself:
 
 ```
 $ npm start
