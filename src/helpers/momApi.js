@@ -54,7 +54,7 @@ class MomApi {
       }`
     });
     if (!response.signupUser) {
-      return "Username or Email already Exists!";
+      return "Username or Email already Exists";
     };
     return response.signupUser.token;
   }
@@ -69,6 +69,9 @@ class MomApi {
           password: "${password}"
           )}`
     });
+    if (!response.loginUser) {
+      return "Incorrect Username Or Password";
+    };
     return response.loginUser.token;
   }
 
